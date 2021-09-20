@@ -1,10 +1,13 @@
 //GET KEY LOCALSTORAGE
 let loadProducts = JSON.parse(localStorage.getItem("product"));
 
-//UTILS VARIABLES
+//UTILS VARIABLES & CONSTANT
 let products = [];
 let globalDataClient = [];
 let contact = [];
+const formTitleContainer = document.querySelector(".title-container");
+const formValidation = document.getElementById("form-validation");
+
 
 // BUILDING TABLE ID ARTICLES
     
@@ -17,7 +20,7 @@ const productsId = async () => {
 }
 
 
-const placeForm = document.getElementById("form_validation");
+const placeForm = document.getElementById("form-validation");
 
 // DISPLAY FORM
 const formDisplay = async () => {
@@ -108,7 +111,7 @@ const loadDataClient = async () => {
             return `${value} : Les chiffres et les symboles ne sont pas autorisés. Le nombre de caractères du prénom est compris entre 3 et 20.`;
         };
         const textRegex = (value) => {
-           return /^[A-Za-z,.'-ÉÈéèàâä\s]{3,20}$/.test(value);
+           return /^[A-Za-z]{3,20}$/.test(value);
         }
         const emailRegex = (value) => {
            return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
@@ -128,7 +131,7 @@ const loadDataClient = async () => {
                 
             } else {
                 alert(textInput("Nom"));
-                informationName.textContent = "Veuillez remplir ce champs !";
+                informationName.textContent = "Veuillez remplir ce champs au format indiqué !";
                 informationName.style.color = " red";
                 return false; 
             }
@@ -179,8 +182,16 @@ const loadDataClient = async () => {
         
        
         // INSERT VALUES FORM IN LOCAL STORAGE 
-        (controlFirstName() && controlLastName() && controlCity() && controlEmail() && controlEmail() && controladdress()) ? localStorage.setItem("valuesForm", JSON.stringify(contact)) : alert("L'enregistrement de vos informations n'a pas pu être réalisé. Veuillez essayer de nouveau !");
-    
+        if(controlFirstName() && controlLastName() && controlCity() && controlEmail() && controlEmail() && controladdress()) {
+            localStorage.setItem("valuesForm", JSON.stringify(contact));
+            formTitleContainer.innerHTML = "<h1>Votre sélection de produits et votre formaulaire ont bien été enregistrés. À très bientôt !";
+            formValidation.innerHTML = "";
+
+        } else {
+            formTitleContainer.innerHTML = "<h1>Malheureusement votre sélection de produits et votre formulaire n'ont pas été enregistrés !";
+            formTitleContainer.style.color = "red";
+        }
+        
         // GLOBAL DATA CLIENT
 
         globalDataClient = {
