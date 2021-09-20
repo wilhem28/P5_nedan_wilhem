@@ -975,6 +975,12 @@ article .title-container h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 50%;
 }
 
@@ -990,7 +996,31 @@ article .title-container h1 {
           justify-content: flex-end;
   width: 90%;
   padding-right: 1%;
-  font-size: 2vw;
+  font-size: 3rem;
+}
+
+@media screen and (max-width: 1024px) {
+  #form_validation table tbody tr td label {
+    font-size: 2rem;
+    height: 20px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 786px) {
+  #form_validation table tbody tr td label {
+    font-size: 1.5rem;
+    height: 20px;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #form_validation table tbody tr td label {
+    font-size: 1rem;
+    height: 20px;
+    width: 100%;
+  }
 }
 
 #form_validation table tbody tr td .informationName {
@@ -1010,7 +1040,24 @@ article .title-container h1 {
   display: -ms-flexbox;
   display: flex;
   width: 75%;
-  height: 100%;
+  height: 50%;
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 375px) {
+  #form_validation table tbody tr td input, #form_validation table tbody tr td textarea {
+    font-size: 0.5rem;
+    height: 20px;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 376px) and (max-width: 768px) {
+  #form_validation table tbody tr td input, #form_validation table tbody tr td textarea {
+    font-size: 1rem;
+    height: 40px;
+    width: 100%;
+  }
 }
 
 #form_validation table tbody tr td button {
