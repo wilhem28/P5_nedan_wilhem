@@ -1,4 +1,4 @@
-// --------------- UTILS VARIABLES ----------------
+// --------------- UTILS VARIABLES & CONSTANT----------------
 let url = "http://localhost:3000/api/furniture";
 let dataArticles = [];
 let urlId = [];
@@ -8,8 +8,8 @@ let urlSearchParams = [];
 let structureOptions = [];
 
 const lessArt = document.querySelector(".lessArticle");
+const productTitleContainer = document.querySelector(".title-container");
 
-// let structureSelectedArticle = [];
 
 // -------------------- GET ARTICLES DATA ---------------------
 const fetchData = async () => 
@@ -28,7 +28,8 @@ const catchIdSelectedArticle = async () => {
     await catchUrl();
 
     const urlSearchParams = new URLSearchParams(urlId);
-    id = urlSearchParams.get("id");
+
+    (id = urlSearchParams.get("id")) !== null ? productTitleContainer.innerHTML = "<h1>VOTRE SÉLECTION</h1>" : productTitleContainer.innerHTML ="<h1>Votre sélection n'a pas été enregistréé</h1>";
      
 }
 
@@ -37,7 +38,7 @@ const matchIdSelectedArticle = async () => {
 
     await catchIdSelectedArticle();
 
-    idSelectedArticle = dataArticles.find((element) => element._id === id);
+    (idSelectedArticle = dataArticles.find((element) => element._id === id)) == false ? console.log("KO") : console.log("OK");
 }
 
 // -------------------- DYNAMIC HTML BUILDING OF SELECTED ARTICLE ---------------------
@@ -146,7 +147,6 @@ const less = () => {
 }
 
 // -------------------- REGISTRATION IN THE LOCALSTORAGE AND ORDER CONFIRMATION ---------------------
-// ----- Focntion d'écoute du bouton de mise dans le panier et d'enregistrement dans le localstorage
 const btnConfirm = async () => {
 
     await optionsSelectedArticle();

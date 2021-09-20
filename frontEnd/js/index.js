@@ -1,19 +1,22 @@
 //index.html
 // (function() {
 
-// -------------------- UTILS VARIABLES ---------------------
+// -------------------- UTILS VARIABLES & CONSTANTS---------------------
 let url = "http://localhost:3000/api/furniture";
 let nameProduct = [];
 let articleStructure = [];
 const selectedArticlesContainer = document.getElementById("selected-articles-container");
+const indexTitleContainer = document.querySelector(".title-container");
 
 // -------------------- GET ARTICLES DATA ---------------------
-const fetchData = async () => 
-    await fetch(url)
-        .then(res => res.json())
-        .then(data => nameProduct = data)
-        .catch((error) => alert('Un incident est survenu lors de la connexion :' + ' ' + error.message));
+const fetchData = async () => {
 
+    await fetch(url)
+    .then(res => res.json())
+    .then(data => nameProduct = data)
+    .catch((error) => alert('Un incident est survenu lors de la connexion :' + ' ' + error.message));
+}
+    
 // -------------------- BUILD HTML LAYOUT ---------------------
 const buildHtmlIndex = async () => {
     await fetchData();
@@ -41,7 +44,6 @@ const buildHtmlIndex = async () => {
                     </div>
                 </a>
             `
-
     }
 }
 
@@ -49,9 +51,9 @@ const buildHtmlIndex = async () => {
 const articlesDisplay = async () => {
     await fetchData();
     await buildHtmlIndex();
-    
-    selectedArticlesContainer.innerHTML = articleStructure;
 
+    articleStructure !== null ? selectedArticlesContainer.innerHTML = articleStructure :indexTitleContainer.innerHTML = "<h1>Rafraîssissez la page pour afficher vos produits !</h1>";
+       
 }
 articlesDisplay();
 

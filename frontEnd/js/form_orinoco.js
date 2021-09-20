@@ -16,7 +16,7 @@ const productsId = async () => {
     }
 }
 
-//BUILDING FORM
+
 const placeForm = document.getElementById("form_validation");
 
 // DISPLAY FORM
@@ -86,7 +86,6 @@ const loadDataClient = async () => {
 
     const btnSendForm = document.getElementById("btnSubmit");
     const informationName = document.querySelector(".informationName");
-    
     
     btnSendForm.addEventListener("click", (e) => {
 

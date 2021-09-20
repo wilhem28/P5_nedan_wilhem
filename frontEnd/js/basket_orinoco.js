@@ -1,5 +1,6 @@
-// --------------- UTILS VARIABLES ----------------
+// --------------- UTILS VARIABLES AND CONSTANT----------------
 let structureProduitPanier = [];
+
 
 // --------------- DISPLAY ARTICLES BASKET ----------------
 const positionElement = document.getElementById("resum-container");
@@ -50,7 +51,6 @@ const insertBtnGlobalDelete = async () => {
         
         `
     ;
-
     positionElement.insertAdjacentHTML("beforeend", btnDeleteAll);
     
 }
@@ -68,9 +68,15 @@ const activeBtnGlobalDelete = async () => {
     selectedBtnDeleteAll.addEventListener("click", (event) => {
 
         event.preventDefault();
-        localStorage.removeItem("product");
-        alert("Votre panier a été vidé !");
-        window.location.href = "basket_orinoco.html";
+
+        if(localStorage.removeItem("product") !== null) {
+
+            alert("Votre panier a été vidé !");
+            window.location.href = "basket_orinoco.html";
+        } else {
+            alert("Votre panier n'a pas été vidé !")
+        }
+        
     })
 }
 activeBtnGlobalDelete();
