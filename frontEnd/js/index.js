@@ -52,7 +52,7 @@ const articlesDisplay = async () => {
     await fetchData();
     await buildHtmlIndex();
 
-    articleStructure !== null ? selectedArticlesContainer.innerHTML = articleStructure :indexTitleContainer.innerHTML = "<h1>Rafraîssissez la page pour afficher vos produits !</h1>";
+    articleStructure !== null ? selectedArticlesContainer.innerHTML = articleStructure : indexTitleContainer.innerHTML = "<h1>Rafraîssissez la page pour afficher vos produits !</h1>";
        
 }
 articlesDisplay();
