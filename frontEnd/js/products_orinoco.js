@@ -9,8 +9,6 @@ let structureOptions = [];
 
 const lessArt = document.querySelector(".lessArticle");
 
-
-
 // let structureSelectedArticle = [];
 
 // -------------------- GET ARTICLES DATA ---------------------
