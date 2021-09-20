@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+header {
+    display: flex;
+    width: 100%;
+    padding : 20px 25px;
+    background-color: $secondaryBackgroundColor;
+    
+    @media (max-width: 768px) {
+        flex-flow: row wrap;
+    }
+    .logo {
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+        color: $primaryFontColor;
+        
+        @media (max-width: 768px) {
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        p {
+            display: flex;
+            font: {
+                family: 'MedievalSharp', cursive;
+                size: 60px;
+            }
+            background-color: $primaryBackgroundColor;
+            border-radius: 15px;
+            padding: 0 15px;
+        }
+    }
+    nav {
+        @include displayRowCenter;
+        width: 40%;
+        @media (max-width: 768px) {
+            padding: 5px;
+            width: 100%;
+        }
+        ul {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            
+            li {
+                list-style: none;
+                color: $tertiaryFontColor;
+                font: {
+                    size: 1rem;
+                    weight: 700;
+                }
+                padding: 15px;
+                border-radius: 15px;
+                border: 4px solid $tertiaryBorderColor;
+                transition: all 500ms ease;
+                &:hover {
+                    color: $secondaryFontColor;
+                    background-color: $tertiaryBackgroundColor;
+                }
+            }
+        }
+    } 
+}

@@ -1,0 +1,67 @@
+// ********** BASKET_ONORICO **************
+#resum-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 80%;
+    .container-basket-empty {
+        @include displayRowCenter;
+        width: 100%;
+        padding: 50px;
+        background-color: $secondaryBackgroundColor;
+        font-size: 2rem;
+        color: $tertiaryFontColor;
+        text-transform: uppercase;
+    }
+    
+    .selection {
+        display: flex;
+        grid-gap: 2px;
+        width: 100%;
+        height: auto;
+        border-bottom: 2px solid $secondaryBorderColor;
+        // margin-bottom: 10px;
+        padding: 15px;
+        .articleName {
+            display:flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 50%;
+            padding-left: 5%;
+            white-space: nowrap;
+            font-size: 2.5vw;
+        }
+        .articleOptions {
+            @include displayRowCenter;
+            width: 20%;
+            font-size: 2.5vw;
+        }
+        .articlePrice {
+            @include displayRowCenter;
+            width: 20%;
+            height: 100%;
+            color: $secondaryFontColor;
+            background-color: burlywood;
+            border-radius: 10px;
+            font-size: 2.5vw;
+            font-weight: bolder;
+            padding: 1px;
+        }
+        .btn-delete {
+            @include displayRowCenter;
+            width: 10%;
+            height: 30px;
+            border-radius: 5px;
+            font-weight: bolder;
+            font-size: 1.1vw;
+            color: red;
+            background-color: $tertiaryBackgroundColor;
+            padding: 5%;
+        }
+
+    }
+    .deleteAll {
+        @include displayRowCenter;
+        font-weight: 900;
+        padding: 2%;
+    }
+}

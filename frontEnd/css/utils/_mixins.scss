@@ -1,0 +1,11 @@
+@mixin displayRowCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@mixin displayRow {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
