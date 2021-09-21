@@ -19,7 +19,6 @@ const productsId = async () => {
     }
 }
 
-
 const placeForm = document.getElementById("form-validation");
 
 // DISPLAY FORM
@@ -136,7 +135,6 @@ const loadDataClient = async () => {
                 return false; 
             }
         };
-
         // FirstName
         const controlFirstName = () => {
               
@@ -147,7 +145,6 @@ const loadDataClient = async () => {
                 return false;
             }
         };
-       
         // Country
         const controlCity = () => {
 
@@ -158,7 +155,6 @@ const loadDataClient = async () => {
                 return false;
             }
         };
-
         // Email
         const controlEmail = () => {
 
@@ -182,13 +178,13 @@ const loadDataClient = async () => {
         
        
         // INSERT VALUES FORM IN LOCAL STORAGE 
-        if(controlFirstName() && controlLastName() && controlCity() && controlEmail() && controlEmail() && controladdress()) {
+        if(controlFirstName() && controlLastName() && controlCity() && controlEmail() && controladdress()) {
             localStorage.setItem("valuesForm", JSON.stringify(contact));
             formTitleContainer.innerHTML = "<h1>Votre sélection de produits et votre formaulaire ont bien été enregistrés. À très bientôt !";
             formValidation.innerHTML = "";
 
         } else {
-            formTitleContainer.innerHTML = "<h1>Malheureusement votre sélection de produits et votre formulaire n'ont pas été enregistrés !";
+            formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
             formTitleContainer.style.color = "red";
         }
         

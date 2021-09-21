@@ -26,11 +26,9 @@ const catchIdSelectedArticle = async () => {
 
     await fetchData();
     await catchUrl();
-
     const urlSearchParams = new URLSearchParams(urlId);
 
-    (id = urlSearchParams.get("id")) !== null ? productTitleContainer.innerHTML = "<h1>VOTRE SÉLECTION</h1>" : productTitleContainer.innerHTML ="<h1>Votre sélection n'a pas été enregistréé</h1>";
-     
+    (id = urlSearchParams.get("id")) !== null ? productTitleContainer.innerHTML = "<h1>VOTRE SÉLECTION</h1>" : productTitleContainer.innerHTML ="<h1>Votre sélection n'a pas été enregistréé</h1>";   
 }
 
 // -------------------- GET SELECTED ARTICLE ID INTO API ---------------------
@@ -43,10 +41,6 @@ const matchIdSelectedArticle = async () => {
 
 // -------------------- DYNAMIC HTML BUILDING OF SELECTED ARTICLE ---------------------
 const buildHtmlProduct = async () => {
-
-    // await matchIdSelectedArticle();
-
-    const containerSelectedArticle = document.getElementById('selected-article-container');
     
     structureSelectedArticle = 
     `
@@ -181,9 +175,6 @@ const btnConfirm = async () => {
         // Vérification de l'existence d'une clé "product" dans le localStorage préalablement convertit en javascript (parse)
         let loadProduct = JSON.parse(localStorage.getItem("product"));
        
-        // Déclaration d'une clé "product"
-        window.localStorage.setItem("product", JSON.stringify(loadProduct));
-
         // Condition d'existence ou non de la clé "product"
 
         const createKeyLocalStorage = () => {

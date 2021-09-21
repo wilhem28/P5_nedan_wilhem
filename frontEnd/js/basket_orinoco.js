@@ -1,5 +1,5 @@
 // --------------- UTILS VARIABLES AND CONSTANT----------------
-let structureProduitPanier = [];
+let structureArticlesBasket = [];
 
 
 // --------------- DISPLAY ARTICLES BASKET ----------------
@@ -12,18 +12,18 @@ let loadProducts = JSON.parse(localStorage.getItem("product"));
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
 if(loadProducts === null) {
-    const panierVide = 
+    const basketEmpty = 
     `
     <div class="container-basket-empty">
         <div>Vous devez constituer votre panier d'articles</div>
     </div>
     `
-    positionElement.innerHTML = panierVide;
+    positionElement.innerHTML = basketEmpty;
 
 } else {
     
         for(let k = 0; k < loadProducts.length; k++) {
-            structureProduitPanier += 
+            structureArticlesBasket += 
 
             `   <div class="selection">
                     <button class="btn-delete">SUPPRIMER</button>
@@ -34,7 +34,7 @@ if(loadProducts === null) {
                 
             `;
 
-            positionElement.innerHTML = structureProduitPanier;
+            positionElement.innerHTML = structureArticlesBasket;
         }
     }
 }
