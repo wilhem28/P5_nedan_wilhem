@@ -74,7 +74,7 @@ const activeBtnGlobalDelete = async () => {
             alert("Votre panier a été vidé !");
             window.location.href = "basket_orinoco.html";
         } else {
-            alert("Votre panier n'a pas été vidé !")
+            alert("Votre panier est vide !")
         }
         
     })
