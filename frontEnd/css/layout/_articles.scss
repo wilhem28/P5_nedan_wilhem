@@ -4,7 +4,9 @@ article {
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
-    height: 90%;
+    height: 100%;
+    margin-bottom: 10%;
+
     .title-container {
         @include displayRowCenter;
         width: 90%;
@@ -20,7 +22,7 @@ article {
             text-align: center;  
         }
     }
-    #selected-articles-container {
+    #availables-articles-container {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;

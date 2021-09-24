@@ -11,7 +11,6 @@ html {
 }
 
 body {
-    
     display: flex;
     flex-flow: column nowrap;
     width: 100%;
@@ -19,7 +18,7 @@ body {
     font: {
         family: 'Urbanist', sans-serif;
         size: 12px;
-    } 
+    };
 }
 
 a {

@@ -30,10 +30,8 @@ if(loadProducts === null) {
                     <div class="articleName">${loadProducts[k].nomProduit}</div>
                     <div class="articleOptions">${loadProducts[k].optionProduit}</div>
                     <div class="articlePrice">${loadProducts[k].prix * loadProducts[k].quantite} €</div>
-                </div>
-                
+                </div>        
             `;
-
             positionElement.innerHTML = structureArticlesBasket;
         }
     }
