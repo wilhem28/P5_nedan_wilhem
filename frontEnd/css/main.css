@@ -182,7 +182,7 @@ article .title-container h1 {
   font-size: 1.5rem;
   font-weight: 900;
   word-spacing: 3px;
-  padding: 50px 0;
+  padding: 5% 0;
   text-align: center;
 }
 
@@ -855,7 +855,11 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #orinoco-articles-selection-container .selection .btn-article-delete {
-  background-color: green;
+  background-color: #ffffff;
+  border-radius: 5px;
+  color: #802480;
+  padding: 1%;
+  border: 2px solid black;
 }
 
 #orinoco-articles-selection-container .selection .articleName {
@@ -905,27 +909,6 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   border-radius: 10px;
   font-size: 2.5vw;
   font-weight: bolder;
-  padding: 1px;
-}
-
-#orinoco-articles-selection-container .selection .btn-delete {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  width: 10%;
-  height: 30px;
-  border-radius: 5px;
-  font-weight: bolder;
-  font-size: 1.1vw;
-  color: red;
-  background-color: #ffffff;
-  padding: 5%;
 }
 
 #orinoco-articles-selection-container .deleteAll {
@@ -938,8 +921,69 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 30%;
   font-weight: 900;
-  padding: 2%;
+  padding: 1%;
+  margin: 15px;
+  border-radius: 5px;
+  background-color: #ffffff;
+  border: 2px solid black;
+}
+
+#orinoco-articles-selection-container .container-total-price-article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  padding: 15px;
+}
+
+#orinoco-articles-selection-container .container-total-price-article .text-total-price-article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  width: 80%;
+  height: 100%;
+  font-size: 2.5vw;
+}
+
+#orinoco-articles-selection-container .container-total-price-article .total-price-article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 20%;
+  color: green;
+  font-size: 3vw;
+  font-weight: bolder;
+}
+
+#orinoco-articles-selection-container .form-validation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  background-color: black;
 }
 
 table {
@@ -1008,7 +1052,7 @@ table tbody tr td label {
       -ms-flex-pack: end;
           justify-content: flex-end;
   width: 90%;
-  padding-right: 1%;
+  padding-right: 5%;
   font-size: 1.5rem;
 }
 

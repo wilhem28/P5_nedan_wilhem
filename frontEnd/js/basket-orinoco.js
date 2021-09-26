@@ -1,6 +1,6 @@
 // --------------- UTILS VARIABLES AND CONSTANT----------------
 let structureArticlesBasket = [];
-
+let articlesSoldByOrinoco = [];
 // --------------- DISPLAY ARTICLES BASKET ----------------
 const positionElement = document.getElementById("orinoco-articles-selection-container");
 
@@ -12,7 +12,7 @@ let loadProducts = JSON.parse(localStorage.getItem("orinocoSelection"));
 
 const basketDisplay = async () => {
 
-if(loadProducts == null) {
+if(loadProducts == null || loadProducts == 0) {
     const basketEmpty = 
     `
     <div class="container-basket-empty">
@@ -38,24 +38,50 @@ if(loadProducts == null) {
     }
 }
 
-// -------------------- ACTIVE BUTTON DELETE ITEM ---------------------
-
-const functionBtnDeleteItem = async () => {
+// -------------------- DATA FURNITURE API ---------------------
+const fetchDataFurnitureApi = async () => {
 
     await basketDisplay();
 
+    const urlFurnitureApi = "http://localhost:3000/api/furniture/"; // Sélection de l'A.P.I furniture
+        try {
+            await fetch(urlFurnitureApi)
+            .then(res => res.json())
+            .then(data => articlesSoldByOrinoco = data);
+        }
+        catch(error) {
+            alert('Un incident est survenu lors de la connexion :' + ' ' + error.message);
+        } 
+}
+
+// -------------------- ACTIVE BUTTON DELETE ITEM ---------------------
+let getIdSelectedArticle = [];
+
+const functionBtnDeleteItem = async () => {
+
+    await fetchDataFurnitureApi();
+
     const btnArticleDelete = document.querySelectorAll(".btn-article-delete");
-
-
+   
     for ( let w = 0 ; w < btnArticleDelete.length ; w++) {
         
         btnArticleDelete[w].addEventListener("click", (event) => {
             event.preventDefault();
 
-        
+        // Select id selected article
+        let deleteIdSelectedArticle = loadProducts[w].idSelectedArtcile;
+
+        // Delete selected article in local storage
+        loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle);
+
+        // Update local storage
+        localStorage.setItem("orinocoSelection", JSON.stringify(loadProducts))
+
+        // Alert
+        alert("Le produit a été supprimé du panier !");
+        window.location.href = "basket-orinoco.html";
         })
     }
-    
 }
 
 // -------------------- INSERT BUTTON GLOBAL DELETE ---------------------
@@ -81,7 +107,7 @@ const activeBtnGlobalDelete = async () => {
     await insertBtnGlobalDelete();
 
     const selectedBtnDeleteAll = document.querySelector(".deleteAll");
-    selectedBtnDeleteAll.style.color = "red";
+    selectedBtnDeleteAll.style.color = "black";
     
     selectedBtnDeleteAll.addEventListener("click", (event) => {
 
@@ -101,6 +127,7 @@ const activeBtnGlobalDelete = async () => {
 // -------------------- TOTAL PRICE ---------------------
 
 let resultTotalPriceArticles = [];
+
 const functionTotalPrice = async () => {
 
     await activeBtnGlobalDelete();
@@ -127,8 +154,12 @@ const functionDisplayTotalPriceArticles = async () => {
 
         const structureHtmlTotalPriceArticles = 
                 `
-                    <div class="total-Price-Article">Le montant total de votre sélection est de ${resultTotalPriceArticles} €</div>
-
+                    <div class="container-total-price-article">
+                        <div class= "text-total-price-article">
+                            <p>Le montant total de votre sélection est de</p>
+                        </div>
+                        <div class="total-price-article"> ${resultTotalPriceArticles} €</div>
+                    </div>
                 `
         positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles );
 
@@ -138,35 +169,34 @@ const functionDisplayTotalPriceArticles = async () => {
 
 const functionDisplayForm = async () => {
 
-
     await functionDisplayTotalPriceArticles();
 
     const displayForm = document.getElementById("orinoco-articles-selection-container");
 
     const templateForm = 
         `
-        <table>
+        <form id= "form-validation">
+            <table>
                 <tbody>
                     <tr>
                         <td>
-                            <label for="idBuyerLastName" class="labelLastName">Nom :</label>
-                            <div class="informationName"><div>
+                            <label for="idUserLastName" class="userLastName">Nom</label>
                         </td>
                         <td>
-                            <input type="text" name="buyerLastName" id="idBuyerLastName">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="idBuyerFirstName">Prénom :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="buyerFirstName" id="idBuyerFirstName">
+                            <input type="text" name="usererLastName" id="idUserLastName">
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <label for="idEmail">E - mail :</label>
+                            <label for="idBuyerFirstName">Prénom</label>
+                        </td>
+                        <td>
+                            <input type="text" name="userFirstName" id="idUserFirstName">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="idEmail">E - mail</label>
                         </td>
                         <td>
                             <input type="email" name="email" id="idEmail">
@@ -174,7 +204,7 @@ const functionDisplayForm = async () => {
                     </tr>
                     <tr>
                         <td>
-                            <label for="idAddress">Adresse :</label>
+                            <label for="idAddress">Adresse</label>
                         </td>
                         <td>
                             <textarea name="address" id="idAddress" rows="5"></textarea>
@@ -182,7 +212,7 @@ const functionDisplayForm = async () => {
                     </tr>
                     <tr>
                         <td>
-                            <label for="idCountry">Ville :</label>
+                            <label for="idCountry">Ville</label>
                         </td>
                         <td>
                             <input type="text" name="country" id="idCountry">
@@ -195,12 +225,90 @@ const functionDisplayForm = async () => {
                     </tr>   
                 </tbody>
             </table>
-        
+        </form>
         `
         displayForm.insertAdjacentHTML("afterend",templateForm);
-
-
 }
 
-functionDisplayForm();
+// -------------------- VALID INPUT FORM ---------------------
+
+const functionValidInputsForm = async () => {
+
+    await functionDisplayForm();
+
+    const formTitleContainer = document.querySelector(".title-container");
+   
+    const formValidation = document.getElementById("form-validation");
+    console.log(formValidation);
+    
+    const btnSendForm = document.getElementById("btnSubmit");
+
+    
+    btnSendForm.addEventListener("click", (event) => {
+        event.preventDefault();
+
+        // Création d'un objet pour répertorier les informations recueillies du user
+        contact = {
+
+            firstName: document.getElementById("idUserFirstName").value,
+            lastName: document.getElementById("idUserLastName").value,
+            address: document.getElementById("idAddress").value,
+            city: document.getElementById("idCountry").value,
+            email: document.getElementById("idEmail").value,
+        }
+
+        // Fonction de validation du nom patronymique, du prénom et du nom de la ville
+        const validLastNameFirstNameCity = () => {
+
+            if ((/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.lastName)) && (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.firstName)) && (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.city))) {
+                console.log("OKAY");
+                return true;
+            } else {
+                console.log("KO");
+            } return
+        }
+       
+
+        // Fonction de validation de l'e-mail
+        const validEmail = () => {
+
+            if ((/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(contact.email)) {
+                console.log("OKAYYYYY");
+                return true;
+            } else {
+                console.log("KO000");
+            } return
+        }
+        
+            
+        // Fonction de validation de l'adresse
+        const validAddress = () => {
+
+            if ((/^[\d\w\s]{10,40}$/).test(contact.address)) {
+                console.log("Wouaw");
+                return true;
+            } else {
+                console.log("OH NONN");
+            } return
+        }
+    
+            // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
+        const loadDataForm = async () => {
+
+
+            if(validLastNameFirstNameCity() && validEmail() && validAddress()) {
+                localStorage.setItem("valuesForm", JSON.stringify(contact));
+                formTitleContainer.innerHTML = "<h1>Votre sélection de produits et votre formaulaire ont bien été enregistrés. À très bientôt !";
+                formValidation.innerHTML = "";
+
+            } else {
+                formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
+                formTitleContainer.style.color = "red";
+            }
+        }
+        loadDataForm();   
+    })  
+}
+functionValidInputsForm();
+
 

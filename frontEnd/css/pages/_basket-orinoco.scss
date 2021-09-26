@@ -12,19 +12,20 @@
         color: $tertiaryFontColor;
         text-transform: uppercase;
     }
-    
     .selection {
         display: flex;
         grid-gap: 2px;
         width: 100%;
         height: auto;
         border-bottom: 2px solid $secondaryBorderColor;
-
-        .btn-article-delete {
-            background-color: green;
-        }
-        // margin-bottom: 10px;
         padding: 15px;
+        .btn-article-delete {
+            background-color: $tertiaryBackgroundColor;
+            border-radius: 5px;
+            color: rgb(128, 36, 128);
+            padding: 1%;
+            border: 2px solid black;
+        }
         .articleName {
             display:flex;
             justify-content: flex-start;
@@ -47,27 +48,43 @@
             background-color: burlywood;
             border-radius: 10px;
             font-size: 2.5vw;
-            font-weight: bolder;
-            padding: 1px;
+            font-weight: bolder; 
         }
-        .btn-delete {
-            @include displayRowCenter;
-            width: 10%;
-            height: 30px;
-            border-radius: 5px;
-            font-weight: bolder;
-            font-size: 1.1vw;
-            color: red;
-            background-color: $tertiaryBackgroundColor;
-            padding: 5%;
-        }
-
     }
     .deleteAll {
         @include displayRowCenter;
+        width: 30%;
         font-weight: 900;
-        padding: 2%;
+        padding: 1%;
+        margin: 15px;
+        border-radius: 5px;
+        background-color: $tertiaryBackgroundColor;
+        border: 2px solid black;
     }
+    .container-total-price-article {
+        @include displayRowCenter;
+        width: 100%;
+        padding: 15px;
+       .text-total-price-article {
+            @include displayRowCenter;
+            justify-content: flex-end;
+            width: 80%;
+            height: 100%;
+            font-size: 2.5vw;
+       } 
+       .total-price-article {
+            @include displayRowCenter;
+            width: 20%;
+            color: green;
+            font-size: 3vw;
+            font-weight: bolder;
+       }
+    }
+    .form-validation {
+        display: flex;
+        width: 100%;
+        background-color: black;
+    } 
 }
 
 
@@ -101,7 +118,7 @@ table {
                     align-items: center;
                     justify-content: flex-end;
                     width: 90%;
-                    padding-right: 1%;
+                    padding-right: 5%;
                     font-size: 1.5rem;
                     @media screen  and(min-width: 787px) and(max-width: 1024px){
                         font-size: 2rem;

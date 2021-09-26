@@ -41,7 +41,7 @@ const getDataSelectedArticle = async () => {
         await fetch(urlFurnitureApi + `${idValueSelectedArticle}`)
         .then(response => response.json())
         .then(data => dataSelectedArticle = data);
-
+       
     } catch {  
         titleContainer.innerHTML = "<p>VOTRE SÉLECTION N'EST PAS DISPONIBLE</p>"
     } 
@@ -148,12 +148,14 @@ const functionBtnLoadSelectedArticle = async () => {
         let dataOptionsSelectedArticle = {
 
             descriptionSelectedArticle: dataSelectedArticle.description,
+            idSelectedArtcile: dataSelectedArticle._id,
             imageUrlSelectedArticle: dataSelectedArticle.imageUrl,
             nameSelectedArticle: dataSelectedArticle.name,
             optionSelectedArticle: containerOptionsSelectedArticle.value,
             priceSelectedArticle: dataSelectedArticle.price / 100,
             quantitySelectedArticle: 1,
         }
+
     
         // Fonction d'accompagement l'utilsateur
 
@@ -167,7 +169,7 @@ const functionBtnLoadSelectedArticle = async () => {
         }
         helpUser();
 
-        // Vérifier l'existence d'une clé "products"
+        // Vérifier l'existence d'une clé "orinocoSelection"
         let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("orinocoSelection"));
         
         if(loadedArticleLocalStorage) {
