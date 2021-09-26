@@ -42,20 +42,20 @@ const iterationAvaiblesArticles = async () => {
 
             availablesArticlesHtmlStructure +=
             `
-                <a href="products_orinoco.html?id=${articlesSoldByOrinoco[i]._id}">
-                    <div class="articles-list-article">
-                        <figure class="articles-list-article-figure">
-                            <div class="articles-list-article-container-image">
-                                <img class="articles-list-article-image" src=${articlesSoldByOrinoco[i].imageUrl} alt="">
+                <a href="article-orinoco.html?id=${articlesSoldByOrinoco[i]._id}">
+                    <div class="article-orinoco">
+                        <figure class="article-orinoco-figure">
+                            <div class="article-orinoco-container-image">
+                                <img class="article-orinoco-image" src=${articlesSoldByOrinoco[i].imageUrl} alt="">
                             </div>
-                            <div class="articles-list-article-container-name-product">
-                                <figcaption class="articles-list-article-title">${articlesSoldByOrinoco[i].name}</figcaption>
+                            <div class="article-orinoco-container-name">
+                                <figcaption class="article-orinoco-name">${articlesSoldByOrinoco[i].name}</figcaption>
                             </div>
-                            <div class="articles-list-article-container-price">
+                            <div class="article-orinoco-container-price">
                                 <p>${articlesSoldByOrinoco[i].price / 100} €</p>
                             </div>
-                            <div class="articles-list-article-container-b">
-                                <div class="articles-list-article-b" type="submit"><i class="far fa-eye"></i></i></div>
+                            <div class="article-orinoco-container-preview">
+                                <div class="article-orinoco-icon" type="submit"><i class="far fa-eye"></i></i></div>
                             </div>
                         </figure> 
                     </div>
