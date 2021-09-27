@@ -2,7 +2,7 @@
 #orinoco-articles-selection-container {
     display: flex;
     flex-flow: column nowrap;
-    width: 80%;
+    width: 90%;
     .container-basket-empty {
         @include displayRowCenter;
         width: 100%;
@@ -19,9 +19,12 @@
         height: auto;
         border-bottom: 2px solid $secondaryBorderColor;
         padding: 15px;
+
         .btn-article-delete {
+            width: 20%;
             background-color: $tertiaryBackgroundColor;
             border-radius: 5px;
+            font-size: 2vw;
             color: rgb(128, 36, 128);
             padding: 1%;
             border: 2px solid black;
@@ -30,7 +33,7 @@
             display:flex;
             justify-content: flex-start;
             align-items: center;
-            width: 50%;
+            width: 40%;
             padding-left: 5%;
             white-space: nowrap;
             font-size: 2.5vw;
@@ -42,13 +45,21 @@
         }
         .articlePrice {
             @include displayRowCenter;
-            width: 20%;
+            width: 15%;
             height: 100%;
             color: $secondaryFontColor;
             background-color: burlywood;
             border-radius: 10px;
             font-size: 2.5vw;
             font-weight: bolder; 
+        }
+        .articleAmount {
+            @include displayRowCenter;
+            width: 5%;
+            font: {
+                size: 2vw;
+                weight: bold;
+            }
         }
     }
     .deleteAll {
@@ -64,7 +75,7 @@
     .container-total-price-article {
         @include displayRowCenter;
         width: 100%;
-        padding: 15px;
+        padding: 0 15px 10% 0;
        .text-total-price-article {
             @include displayRowCenter;
             justify-content: flex-end;
@@ -80,93 +91,97 @@
             font-weight: bolder;
        }
     }
-    .form-validation {
-        display: flex;
-        width: 100%;
-        background-color: black;
-    } 
+   
 }
 
 
-table {
+#form-validation {
     display: flex;
-    width: 50%;
-    padding: 2%;
-    background-color: aquamarine;
-    margin-top: 5%;
-    @media screen and(max-width: 425px){
-        width: 90%;
+    width: 90%;
+    height: 100%;
+    margin-bottom: 15%;
+    @media screen and(min-width: 1024px){
+        width: 80%;
     }
-    @media screen and(min-width: 426px) and(max-width: 768px){
-        width: 70%;
+    @media screen and(min-width: 768px) and(max-width: 1024px){
+        width: 60%;
     }
-    tbody {
+    @media screen and(min-width: 425px) and(max-width: 767px){
+        width: 80%;
+    }
+    
+    table {
         display: flex;
-        flex-flow: column nowrap;
         width: 100%;
-        tr {
+        padding: 2%;
+        background-color: aquamarine;
+        tbody {
             display: flex;
+            flex-flow: column nowrap;
             width: 100%;
-            height: 20%;
-            padding: 1%;
-            td {
-                @include displayRowCenter;
-                width: 50%;
-                
-                label {
-                    display: flex;
-                    align-items: center;
-                    justify-content: flex-end;
-                    width: 90%;
-                    padding-right: 5%;
-                    font-size: 1.5rem;
-                    @media screen  and(min-width: 787px) and(max-width: 1024px){
-                        font-size: 2rem;
-                        height: 20px;
-                        width: 100%;
+            tr {
+                display: flex;
+                width: 100%;
+                height: 20%;
+                padding: 1%;
+                td {
+                    @include displayRowCenter;
+                    width: 50%;
+                    
+                    label {
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                        width: 90%;
+                        padding-right: 5%;
+                        font-size: 3rem;
+                        @media screen and(max-width: 1024px){
+                            font-size: 2rem;
+                            height: 20px;
+                            width: 100%;
+                        }
+                        @media screen and(max-width: 786px){
+                            font-size: 1.5rem;
+                            height: 20px;
+                            width: 100%;
+                        }
+                        @media screen and(max-width: 425px){
+                            font-size: 1rem;
+                            height: 20px;
+                            width: 100%;
+                        }
                     }
-                    @media screen and(min-width: 426px) and(max-width: 786px){
+                    .informationName {
+                        @include displayRowCenter;
+                        // color: brown;
+                    }
+                    input, textarea {
+                        display: flex;
+                        width: 75%;
+                        height: 50%;
                         font-size: 1.5rem;
-                        height: 20px;
-                        width: 100%;
+                        @media screen and(max-width: 375px){
+                            font-size: 0.5rem;
+                            height: 20px;
+                            width: 100%;
+                        }
+                        @media screen and(min-width: 376px) and(max-width:768px){
+                            font-size: 1rem;
+                            height: 40px;
+                            width: 100%;
+                        }
                     }
-                    @media screen and(max-width: 425px){
-                        font-size: 1rem;
-                        height: 20px;
-                        width: 100%;
+                    button {
+                        @include displayRowCenter;
+                        height: 25px;
+                        border-radius: 5px;
+                        margin-top: 5%;
+                        margin-left: 50%;
+                        padding: 2%;
+                        letter-spacing: 2px;
+                        color: $tertiaryFontColor;
+                        background-color: $secondaryFontColor;
                     }
-                }
-                .informationName {
-                    @include displayRowCenter;
-                    // color: brown;
-                }
-                input, textarea {
-                    display: flex;
-                    width: 75%;
-                    height: 50%;
-                    font-size: 1rem;
-                    padding: 5%;
-                    @media screen and(max-width: 375px){
-                        font-size: 0.5rem;
-                        height: 20px;
-                        width: 100%;
-                    }
-                    @media screen and(min-width: 376px) and(max-width:768px){
-                        font-size: 1rem;
-                        height: 40px;
-                        width: 100%;
-                    }
-                }
-                button {
-                    @include displayRowCenter;
-                    height: 25px;
-                    border-radius: 5px;
-                    margin-top: 5%;
-                    margin-left: 50%;
-                    padding: 2%;
-                    letter-spacing: 2px;
-                    color: $tertiaryFontColor;
-                    background-color: $secondaryFontColor;
                 }
             }
         }

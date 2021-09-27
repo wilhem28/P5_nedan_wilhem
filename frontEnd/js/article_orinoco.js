@@ -2,6 +2,7 @@
 let DataUrlSelectedArticle = [];
 let idValueSelectedArticle = [];
 let dataSelectedArticle = [];
+let userAmountChoice = [];
 
 // Constantes utiles pour la récupération d'éléments du D.O.M
 const titleContainer = document.querySelector('.title-container');
@@ -65,19 +66,14 @@ const structureFunctionSelectedArticle = async () => {
             <div class="selected-article-informations-container">
                 <p class="container-description">${dataSelectedArticle.description}</p>
                 <div class="container-price">${dataSelectedArticle.price / 100} €</div>
-                <div id="container-input">
-                    <span class="minusAmountSelectedArticle">
-                        <i class="fas fa-minus"></i>
-                    </span>
-                    <span class="amountSelectedArticle">1</span>
-                    <span class="plusAmountSelectedArticle">
-                        <i class="fas fa-plus"></i>
-                    </span>
-                </div>
                 <form id="idForm">
                     <div class="container-option-product">
                         <label for="idOptionsSelectedArticle">OPTIONS</label>
                         <select name="optionsSelectedArticle" id="idOptionsSelectedArticle"></select>
+                    </div>
+                    <div class="container-Amount-product">
+                        <label for="idAmountSelectedArticle">QUANTITÉ</label>
+                        <select name="amountSelectedArticle" id="idAmountSelectedArticle"></select>
                     </div>
                     <button type="submit" id="id-btn-send" name="btn-send">Mettre dans mon panier</button>
                 </form>
@@ -103,27 +99,27 @@ const display0ptionsSelectedArticle = async () => {
     
     await displayCharacteristicsSelectedArticle();
 
-    const userOptionschoice = dataSelectedArticle.varnish;
+    const userOptionsChoice = dataSelectedArticle.varnish;
     const containerOptionsSelectedArticle = document.getElementById("idOptionsSelectedArticle");
 
     let structureHtmlOptions = [];
     
-    if(userOptionschoice == null) {
+    if(userOptionsChoice == null) {
 
         structureHtmlOptions = 
             `
-                <option value="aucune-option">Aucune option</option>
+                <option value="aucune-option">Sans option</option>
             `
             ; 
         containerOptionsSelectedArticle.innerHTML = structureHtmlOptions;
 
     } else {
 
-        for(let j = 0; j < userOptionschoice.length; j++) {
+        for(let j = 0; j < userOptionsChoice.length; j++) {
       
             structureHtmlOptions += 
                `
-                   <option value="${userOptionschoice[j]}">${userOptionschoice[j]}</option>
+                   <option value="${userOptionsChoice[j]}">${userOptionsChoice[j]}</option>
                `
                ; 
        }
@@ -131,11 +127,34 @@ const display0ptionsSelectedArticle = async () => {
     }
 }
 
+
+// Fonction d'affichage du choix de la quantité par l'utilisateur
+const displayAmountSelectedArticle = async () => {
+
+    await display0ptionsSelectedArticle();
+
+    userAmountChoice = document.getElementById("idAmountSelectedArticle");
+    
+    let structureAmountHtml = [];
+
+    for (let p = 1; p < 21; p++) {
+    
+            structureAmountHtml += 
+
+                `
+                    <option value = "${p}">${p}</option>
+
+                `
+        }
+    userAmountChoice.innerHTML = structureAmountHtml;
+}
+
+
 // Fonction d'enregistrement dans le local storage
 
 const functionBtnLoadSelectedArticle = async () => {
 
-    await display0ptionsSelectedArticle();
+    await displayAmountSelectedArticle();
 
     const btnLoadSelectedArticle = document.getElementById("id-btn-send");
     
@@ -153,7 +172,7 @@ const functionBtnLoadSelectedArticle = async () => {
             nameSelectedArticle: dataSelectedArticle.name,
             optionSelectedArticle: containerOptionsSelectedArticle.value,
             priceSelectedArticle: dataSelectedArticle.price / 100,
-            quantitySelectedArticle: 1,
+            quantitySelectedArticle: parseInt(userAmountChoice.value),
         }
 
     
@@ -169,17 +188,17 @@ const functionBtnLoadSelectedArticle = async () => {
         }
         helpUser();
 
-        // Vérifier l'existence d'une clé "orinocoSelection"
-        let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("orinocoSelection"));
+        // Vérifier l'existence d'une clé "products"
+        let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("products"));
         
         if(loadedArticleLocalStorage) {
             loadedArticleLocalStorage.push(dataOptionsSelectedArticle);
-            localStorage.setItem("orinocoSelection", JSON.stringify(loadedArticleLocalStorage)); 
+            localStorage.setItem("products", JSON.stringify(loadedArticleLocalStorage)); 
     
         } else {
             newLoadedArticleLocalStorage = [];
             newLoadedArticleLocalStorage.push(dataOptionsSelectedArticle);
-            localStorage.setItem("orinocoSelection", JSON.stringify(newLoadedArticleLocalStorage));
+            localStorage.setItem("products", JSON.stringify(newLoadedArticleLocalStorage));
         }
     })
 }

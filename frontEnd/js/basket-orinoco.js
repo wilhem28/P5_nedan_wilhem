@@ -1,6 +1,8 @@
 // --------------- UTILS VARIABLES AND CONSTANT----------------
 let structureArticlesBasket = [];
 let articlesSoldByOrinoco = [];
+let globalDataClient = [];
+let products = [];
 // --------------- DISPLAY ARTICLES BASKET ----------------
 const positionElement = document.getElementById("orinoco-articles-selection-container");
 
@@ -8,8 +10,19 @@ const positionElement = document.getElementById("orinoco-articles-selection-cont
 
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
-let loadProducts = JSON.parse(localStorage.getItem("orinocoSelection"));
+let loadProducts = JSON.parse(localStorage.getItem("products"));
 
+// Fonction de construction de la table de l'I.D des articles
+const tableProducts = () => {
+          
+    for( let w = 0; w < loadProducts.length; w++) {
+    
+        products.push(loadProducts[w].idSelectedArtcile);
+    }
+}
+tableProducts();
+
+// Fonction d'affichage du panier de la selection
 const basketDisplay = async () => {
 
 if(loadProducts == null || loadProducts == 0) {
@@ -24,13 +37,15 @@ if(loadProducts == null || loadProducts == 0) {
 } else {
     
         for(let k = 0; k < loadProducts.length; k++) {
+
             structureArticlesBasket += 
 
             `   <div class="selection">
                     <button class="btn-article-delete">SUPPRIMER</button>
                     <div class="articleName">${loadProducts[k].nameSelectedArticle}</div>
                     <div class="articleOptions">${loadProducts[k].optionSelectedArticle}</div>
-                    <div class="articlePrice">${loadProducts[k].priceSelectedArticle * loadProducts[k].quantitySelectedArticle} €</div>
+                    <div class="articlePrice">${(loadProducts[k].priceSelectedArticle) * (loadProducts[k].quantitySelectedArticle)} €</div>
+                    <div class="articleAmount">${loadProducts[k].quantitySelectedArticle}</div>
                 </div>        
             `;
             positionElement.innerHTML = structureArticlesBasket;
@@ -75,7 +90,7 @@ const functionBtnDeleteItem = async () => {
         loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle);
 
         // Update local storage
-        localStorage.setItem("orinocoSelection", JSON.stringify(loadProducts))
+        localStorage.setItem("products", JSON.stringify(loadProducts))
 
         // Alert
         alert("Le produit a été supprimé du panier !");
@@ -113,7 +128,7 @@ const activeBtnGlobalDelete = async () => {
 
         event.preventDefault();
 
-        if(localStorage.removeItem("orinocoSelection") !== null) {
+        if(localStorage.removeItem("products") !== null) {
 
             alert("Votre panier a été vidé !");
             window.location.href = "basket-orinoco.html";
@@ -137,7 +152,7 @@ const functionTotalPrice = async () => {
 
     for ( let m = 0; m < loadProducts.length; m++) {
 
-        priceArticle = loadProducts[m].priceSelectedArticle;
+        priceArticle = loadProducts[m].priceSelectedArticle * loadProducts[m].quantitySelectedArticle;
         totalPriceArticles.push(priceArticle);
 
     }
@@ -237,13 +252,9 @@ const functionValidInputsForm = async () => {
     await functionDisplayForm();
 
     const formTitleContainer = document.querySelector(".title-container");
-   
     const formValidation = document.getElementById("form-validation");
-    console.log(formValidation);
-    
     const btnSendForm = document.getElementById("btnSubmit");
 
-    
     btnSendForm.addEventListener("click", (event) => {
         event.preventDefault();
 
@@ -256,7 +267,7 @@ const functionValidInputsForm = async () => {
             city: document.getElementById("idCountry").value,
             email: document.getElementById("idEmail").value,
         }
-
+        
         // Fonction de validation du nom patronymique, du prénom et du nom de la ville
         const validLastNameFirstNameCity = () => {
 
@@ -265,10 +276,10 @@ const functionValidInputsForm = async () => {
                 return true;
             } else {
                 console.log("KO");
-            } return
+                return false;
+            } 
         }
        
-
         // Fonction de validation de l'e-mail
         const validEmail = () => {
 
@@ -277,9 +288,9 @@ const functionValidInputsForm = async () => {
                 return true;
             } else {
                 console.log("KO000");
-            } return
+                return false;
+            } 
         }
-        
             
         // Fonction de validation de l'adresse
         const validAddress = () => {
@@ -289,24 +300,47 @@ const functionValidInputsForm = async () => {
                 return true;
             } else {
                 console.log("OH NONN");
-            } return
+                return false;
+            } 
         }
     
-            // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
-        const loadDataForm = async () => {
-
+        // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
+        const loadDataForm = () => {
 
             if(validLastNameFirstNameCity() && validEmail() && validAddress()) {
                 localStorage.setItem("valuesForm", JSON.stringify(contact));
                 formTitleContainer.innerHTML = "<h1>Votre sélection de produits et votre formaulaire ont bien été enregistrés. À très bientôt !";
                 formValidation.innerHTML = "";
-
             } else {
                 formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
                 formTitleContainer.style.color = "red";
             }
         }
-        loadDataForm();   
+        loadDataForm(); 
+        
+        // GLOBAL DATA CLIENT
+
+        globalDataClient = {contact,products,};
+        
+         // FETCH POST
+         
+         const fetchPost = () => {
+         
+            fetch("http://localhost:3000/api/furniture/order", {
+         
+                 method: "POST",
+         
+                 body: JSON.stringify(globalDataClient),
+         
+                 headers : {
+                     'Accept': 'application/json',
+                     "content-Type": "application/json",
+                 },
+             })
+             .then(response => localStorage.setItem("orderId", response))
+             .catch((error) => alert('Un incident est survenu lors de la confirmation :' + ' ' + error.message));
+         }
+         fetchPost();
     })  
 }
 functionValidInputsForm();

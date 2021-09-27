@@ -46,6 +46,7 @@ header {
             li {
                 list-style: none;
                 color: $tertiaryFontColor;
+                
                 font: {
                     size: 1rem;
                     weight: 700;
@@ -57,6 +58,9 @@ header {
                 &:hover {
                     color: $secondaryFontColor;
                     background-color: $primaryBackgroundColor;
+                }
+                .fa-shopping-basket, .fa-home {
+                    font-size: 1.5rem;
                 }
             }
         }
