@@ -12,20 +12,18 @@ const positionElement = document.getElementById("orinoco-articles-selection-cont
 
 let loadProducts = JSON.parse(localStorage.getItem("products"));
 
-// Fonction de construction de la table de l'I.D des articles
-const tableProducts = () => {
-          
-    for( let w = 0; w < loadProducts.length; w++) {
+// // Fonction de construction de la table de l'I.D des articles
+// const tableProducts = () => {
     
-        products.push(loadProducts[w].idSelectedArtcile);
-    }
-}
-tableProducts();
+          
+    
+// tableProducts();
 
 // Fonction d'affichage du panier de la selection
 const basketDisplay = async () => {
 
 if(loadProducts == null || loadProducts == 0) {
+
     const basketEmpty = 
     `
     <div class="container-basket-empty">
@@ -35,6 +33,11 @@ if(loadProducts == null || loadProducts == 0) {
     positionElement.innerHTML = basketEmpty;
 
 } else {
+
+        for( let w = 0; w < loadProducts.length; w++) {
+        
+            products.push(loadProducts[w].idSelectedArtcile);
+        }
     
         for(let k = 0; k < loadProducts.length; k++) {
 
@@ -150,22 +153,16 @@ const functionTotalPrice = async () => {
     let priceArticle = [];
     let totalPriceArticles = [];
 
-    for ( let m = 0; m < loadProducts.length; m++) {
+    if(totalPriceArticles !== true && loadProducts !== null) {
 
-        priceArticle = loadProducts[m].priceSelectedArticle * loadProducts[m].quantitySelectedArticle;
-        totalPriceArticles.push(priceArticle);
+        for ( let m = 0; m < loadProducts.length; m++) {
 
-    }
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    resultTotalPriceArticles = totalPriceArticles.reduce(reducer);
-
-}
-
-// -------------------- DISPLAY TOTAL PRICE ---------------------
-
-const functionDisplayTotalPriceArticles = async () => {
-
-    await functionTotalPrice();
+            priceArticle = loadProducts[m].priceSelectedArticle * loadProducts[m].quantitySelectedArticle;
+            totalPriceArticles.push(priceArticle);
+    
+        }
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        resultTotalPriceArticles = totalPriceArticles.reduce(reducer);
 
         const structureHtmlTotalPriceArticles = 
                 `
@@ -178,13 +175,31 @@ const functionDisplayTotalPriceArticles = async () => {
                 `
         positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles );
 
+    } else {
+
+        const structureHtmlTotalPriceArticles = 
+                `
+                    <div class="container-total-price-article">
+                        <div class= "text-total-price-article">
+                            <p>Le montant total de votre sélection est de</p>
+                        </div>
+                        <div class="total-price-article"> 0 €</div>
+                    </div>
+                `
+        positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles );
+
+
+
+
+    }   
 }
+
 
 // -------------------- DISPLAY FORM ---------------------
 
 const functionDisplayForm = async () => {
 
-    await functionDisplayTotalPriceArticles();
+    await functionTotalPrice();
 
     const displayForm = document.getElementById("orinoco-articles-selection-container");
 
@@ -222,7 +237,7 @@ const functionDisplayForm = async () => {
                             <label for="idAddress">Adresse</label>
                         </td>
                         <td>
-                            <textarea name="address" id="idAddress" rows="5"></textarea>
+                            <input name="address" id="idAddress" rows="5">
                         </td>
                     </tr>
                     <tr>
@@ -234,6 +249,7 @@ const functionDisplayForm = async () => {
                         </td>
                     </tr>
                     <tr>
+                    <td></td>
                         <td>
                             <button id="btnSubmit" type="submit">COMMANDER</button>
                         </td>
@@ -254,6 +270,7 @@ const functionValidInputsForm = async () => {
     const formTitleContainer = document.querySelector(".title-container");
     const formValidation = document.getElementById("form-validation");
     const btnSendForm = document.getElementById("btnSubmit");
+    let responseFetchPost =[];
 
     btnSendForm.addEventListener("click", (event) => {
         event.preventDefault();
@@ -308,9 +325,9 @@ const functionValidInputsForm = async () => {
         const loadDataForm = () => {
 
             if(validLastNameFirstNameCity() && validEmail() && validAddress()) {
-                localStorage.setItem("valuesForm", JSON.stringify(contact));
-                formTitleContainer.innerHTML = "<h1>Votre sélection de produits et votre formaulaire ont bien été enregistrés. À très bientôt !";
-                formValidation.innerHTML = "";
+                localStorage.setItem("contact", JSON.stringify(contact));
+                window.location.href = "confirm-orinoco.html";
+
             } else {
                 formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
                 formTitleContainer.style.color = "red";
@@ -324,9 +341,10 @@ const functionValidInputsForm = async () => {
         
          // FETCH POST
          
-         const fetchPost = () => {
+         const fetchPost = async () => {
          
-            fetch("http://localhost:3000/api/furniture/order", {
+            
+            await fetch("http://localhost:3000/api/furniture/order", {
          
                  method: "POST",
          
@@ -337,8 +355,11 @@ const functionValidInputsForm = async () => {
                      "content-Type": "application/json",
                  },
              })
-             .then(response => localStorage.setItem("orderId", response))
+             .then(response => response.json())
+             .then (data => responseFetchPost = data)
              .catch((error) => alert('Un incident est survenu lors de la confirmation :' + ' ' + error.message));
+
+             localStorage.setItem("products", JSON.stringify(responseFetchPost)); 
          }
          fetchPost();
     })  

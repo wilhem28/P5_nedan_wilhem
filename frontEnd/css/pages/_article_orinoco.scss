@@ -3,11 +3,11 @@
     flex-flow: column nowrap;
     align-items: center;
     width: 100%;
-    height: 80%;
+    height: 100%;
     .title-container {
         @include displayRowCenter;
         width: 90%;
-        height: auto;
+        height: 20%;
         background-color: $primaryBackgroundColor;
         h1 {
             @include displayRowCenter;
@@ -30,10 +30,12 @@
     width: 90%;
     height: 100%;
     margin-bottom: 100px;
+    
     .selected-article {
         @include displayRowCenter;
         height: 100%;
         width: 100%;
+        
         @media screen and(max-width: 768px){
             display: flex;
             flex-flow: column nowrap;
@@ -52,7 +54,7 @@
             .container-name-article {
                 @include displayRowCenter;
                 width: 100%;
-                height: 10%;
+                height: auto;
                 background-color: $secondaryBackgroundColor;
                 h2 {
                     @include displayRowCenter;
@@ -131,7 +133,7 @@
                 justify-content: space-around;
                 align-items: center;
                 width: 100%;
-                height: 50%;
+                height: auto;
                 background-color: $secondaryBackgroundColor;
                 .container-option-product, .container-Amount-product {
                     display: flex;
