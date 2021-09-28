@@ -44,11 +44,13 @@ if(loadProducts == null || loadProducts == 0) {
             structureArticlesBasket += 
 
             `   <div class="selection">
-                    <button class="btn-article-delete">SUPPRIMER</button>
+                    <button class="btn-article-delete">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
                     <div class="articleName">${loadProducts[k].nameSelectedArticle}</div>
                     <div class="articleOptions">${loadProducts[k].optionSelectedArticle}</div>
                     <div class="articlePrice">${(loadProducts[k].priceSelectedArticle) * (loadProducts[k].quantitySelectedArticle)} €</div>
-                    <div class="articleAmount">${loadProducts[k].quantitySelectedArticle}</div>
+                    <div class="articleAmount">x${loadProducts[k].quantitySelectedArticle}</div>
                 </div>        
             `;
             positionElement.innerHTML = structureArticlesBasket;
@@ -214,6 +216,7 @@ const functionDisplayForm = async () => {
                         </td>
                         <td>
                             <input type="text" name="usererLastName" id="idUserLastName">
+                            <i class="far fa-check-circle"></i>
                         </td>
                     </tr>
                     <tr>

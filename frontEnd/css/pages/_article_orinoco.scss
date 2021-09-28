@@ -141,6 +141,7 @@
                     align-items: center;
                     width: 50%;
                     margin: 2% 0;
+
                     label {
                         display: flex;
                         font-size: 2vw;
@@ -149,13 +150,14 @@
                             justify-content: flex-end;
                         }  
                     }
-                    #id_option_produit {
+                    #idOptionsSelectedArticle, #idAmountSelectedArticle {
                         display: flex;
                         width: auto;
                         padding: 2%;
                         border-radius: 5px;
                         font-size: 2vw;
-                        cursor: pointer;  
+                        cursor: pointer;
+                        border: 1px solid black; 
                     }
                 }
                 button {
@@ -167,6 +169,7 @@
                     border-radius: 5px;
                     font-size: 2vw;
                     cursor: pointer;
+                    border: 1px solid black;
                 }
             }
          }

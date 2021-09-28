@@ -40,7 +40,7 @@ header {
   display: flex;
   width: 100%;
   height: auto;
-  padding: 2%;
+  padding: 2% 5%;
   background-color: #491919;
 }
 
@@ -728,7 +728,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   }
 }
 
-#available-article-container .selected-article .selected-article-informations-container form .container-option-product #id_option_produit, #available-article-container .selected-article .selected-article-informations-container form .container-Amount-product #id_option_produit {
+#available-article-container .selected-article .selected-article-informations-container form .container-option-product #idOptionsSelectedArticle, #available-article-container .selected-article .selected-article-informations-container form .container-option-product #idAmountSelectedArticle, #available-article-container .selected-article .selected-article-informations-container form .container-Amount-product #idOptionsSelectedArticle, #available-article-container .selected-article .selected-article-informations-container form .container-Amount-product #idAmountSelectedArticle {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -737,6 +737,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   border-radius: 5px;
   font-size: 2vw;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 #available-article-container .selected-article .selected-article-informations-container form button {
@@ -756,6 +757,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   border-radius: 5px;
   font-size: 2vw;
   cursor: pointer;
+  border: 1px solid black;
 }
 
 #orinoco-articles-selection-container {
@@ -796,13 +798,13 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #orinoco-articles-selection-container .selection .btn-article-delete {
-  width: 20%;
+  width: 10%;
   background-color: #ffffff;
   border-radius: 5px;
   font-size: 2vw;
   color: #802480;
   padding: 1%;
-  border: 2px solid black;
+  border: none;
 }
 
 #orinoco-articles-selection-container .selection .articleName {
@@ -816,7 +818,6 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
       -ms-flex-align: center;
           align-items: center;
   width: 40%;
-  padding-left: 5%;
   white-space: nowrap;
   font-size: 2.5vw;
 }
@@ -845,7 +846,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 15%;
+  width: 20%;
   height: 100%;
   color: #491919;
   background-color: burlywood;
@@ -864,7 +865,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 5%;
+  width: 10%;
   font-size: 2vw;
   font-weight: bold;
 }
@@ -948,18 +949,6 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 @media screen and (min-width: 1024px) {
-  #form-validation {
-    width: 80%;
-  }
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-  #form-validation {
-    width: 60%;
-  }
-}
-
-@media screen and (min-width: 425px) and (max-width: 767px) {
   #form-validation {
     width: 80%;
   }
@@ -1075,6 +1064,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   display: -ms-flexbox;
   display: flex;
   height: 100%;
+  width: 100%;
   font-size: 1.5rem;
   border: 1px solid black;
 }
@@ -1115,7 +1105,8 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
       -ms-flex-align: center;
           align-items: center;
   height: 25px;
-  padding: 2% 5%;
+  font-size: 1.5vw;
+  padding: 5%;
   border-radius: 5px;
   letter-spacing: 2px;
   color: #ffffff;
