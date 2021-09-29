@@ -940,12 +940,17 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #form-validation {
+  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
   width: 90%;
-  height: 100%;
-  margin-bottom: 15%;
+  padding: 3% 8%;
+  background-color: aquamarine;
 }
 
 @media screen and (min-width: 1024px) {
@@ -954,164 +959,84 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   }
 }
 
-#form-validation table {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+#form-validation .container-input-information {
+  position: relative;
+  margin-bottom: 2%;
+  padding-bottom: 3%;
+}
+
+#form-validation .container-input-information label {
+  display: inline-block;
+  margin-bottom: 1%;
+}
+
+#form-validation .container-input-information input {
+  display: block;
   width: 100%;
-  padding: 2%;
-  background-color: aquamarine;
+  height: 30px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid black;
+  font-size: 1rem;
+  font-weight: 900;
+  border-radius: 5px;
 }
 
-#form-validation table tbody {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: column nowrap;
-          flex-flow: column nowrap;
-  width: 100%;
-}
-
-#form-validation table tbody tr {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-  height: 20%;
-  padding: 1%;
-}
-
-#form-validation table tbody tr td:nth-child(1) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 30%;
-}
-
-#form-validation table tbody tr td:nth-child(1) label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
-  width: 90%;
-  padding-right: 5%;
-  font-size: 3rem;
-}
-
-@media screen and (max-width: 1024px) {
-  #form-validation table tbody tr td:nth-child(1) label {
-    font-size: 2rem;
-    height: 20px;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 786px) {
-  #form-validation table tbody tr td:nth-child(1) label {
-    font-size: 1.5rem;
-    height: 20px;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 425px) {
-  #form-validation table tbody tr td:nth-child(1) label {
-    font-size: 1rem;
-    height: 20px;
-    width: 100%;
-  }
-}
-
-#form-validation table tbody tr td:nth-child(1) .informationName {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-#form-validation table tbody tr td:nth-child(2) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  width: 70%;
-  padding-right: 20%;
-}
-
-#form-validation table tbody tr td:nth-child(2) input {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  height: 100%;
-  width: 100%;
-  font-size: 1.5rem;
-  border: 1px solid black;
-}
-
-@media screen and (max-width: 375px) {
-  #form-validation table tbody tr td:nth-child(2) input {
-    font-size: 0.5rem;
-    height: 20px;
-    width: 100%;
-  }
-}
-
-@media screen and (min-width: 376px) and (max-width: 768px) {
-  #form-validation table tbody tr td:nth-child(2) input {
-    font-size: 1rem;
-    width: 100%;
-  }
-}
-
-#form-validation table tbody tr td:nth-child(2) .fa-check-circle, #form-validation table tbody tr td:nth-child(2) .fa-exclamation-circle, #form-validation table tbody tr td:nth-child(2) .errorMsg {
-  margin-left: 2%;
+#form-validation .container-input-information i {
+  position: absolute;
+  top: 30px;
+  right: 10px;
   visibility: hidden;
 }
 
-#form-validation table tbody tr td:nth-child(2) .errorMsg {
-  font-size: 6px;
+#form-validation .container-input-information .errorMessage {
+  position: absolute;
+  font-size: 0.7rem;
+  bottom: 5px;
+  padding-top: 1%;
+  left: 0;
+  visibility: hidden;
+}
+
+#form-validation #btnSubmit {
+  color: #ffffff;
+  background-color: #491919;
+  border-radius: 5px;
+  border: none;
+  padding: 3% 0;
+}
+
+#form-validation .container-input-information.success input {
+  border-color: blue;
+}
+
+#form-validation .container-input-information.success i.fa-check-circle {
+  visibility: visible;
+  color: blue;
+}
+
+#form-validation .container-input-information.success i.fa-exclamation-circle {
+  visibility: hidden;
+  color: blue;
+}
+
+#form-validation .container-input-information.error input {
+  border-color: red;
+}
+
+#form-validation .container-input-information.error i.fa-check-circle {
+  visibility: hidden;
   color: red;
 }
 
-#form-validation table tbody tr td:nth-child(2) #btnSubmit {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 25px;
-  font-size: 1.5vw;
-  padding: 5%;
-  border-radius: 5px;
-  letter-spacing: 2px;
-  color: #ffffff;
-  background-color: #491919;
-  border: 1px solid black;
+#form-validation .container-input-information.error i.fa-exclamation-circle {
+  visibility: visible;
+  color: red;
+}
+
+#form-validation .container-input-information.error.error .errorMessage {
+  visibility: visible;
+  color: red;
 }
 
 .form-validation {

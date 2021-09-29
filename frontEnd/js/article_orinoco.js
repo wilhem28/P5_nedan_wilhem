@@ -1,14 +1,17 @@
 // Initialisation de variables utiles
+
 let DataUrlSelectedArticle = [];
 let idValueSelectedArticle = [];
 let dataSelectedArticle = [];
 let userAmountChoice = [];
 
 // Constantes utiles pour la récupération d'éléments du D.O.M
+
 const titleContainer = document.querySelector('.title-container');
 
 //Fonction de récupération de l'information relative à l'article sélectionné par l'utilisateur 
 // La propriété SEARCH de l'interface LOCATION récupère l'élément '?' et les paramètres suivants de l'url
+
 const getDataUrlSelectedArticle = async () => {
 
     DataUrlSelectedArticle = window.location.search;
@@ -149,7 +152,6 @@ const displayAmountSelectedArticle = async () => {
     userAmountChoice.innerHTML = structureAmountHtml;
 }
 
-
 // Fonction d'enregistrement dans le local storage
 
 const functionBtnLoadSelectedArticle = async () => {
@@ -157,7 +159,6 @@ const functionBtnLoadSelectedArticle = async () => {
     await displayAmountSelectedArticle();
 
     const btnLoadSelectedArticle = document.getElementById("id-btn-send");
-    
     const containerOptionsSelectedArticle = document.getElementById("idOptionsSelectedArticle");
 
     btnLoadSelectedArticle.addEventListener("click", (event) => {
@@ -176,30 +177,29 @@ const functionBtnLoadSelectedArticle = async () => {
         }
 
     
-        // Fonction d'accompagement l'utilsateur
+        // Fonction d'accompagnement de l'utilsateur
 
         const helpUser = () => {
             if(window.confirm(`L'article ${dataSelectedArticle.name} avec l'option : ${containerOptionsSelectedArticle.value} a bien été ajouté au panier. Pour consulter le panier appuyer sur OK ou sur ANNULER pour revenir à l'accueil `)) {
-                window.location.href = "basket-orinoco.html";
+                
+            // Vérification de l'existence d'une clé "products"
+            let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("products"));
+                
+            if(loadedArticleLocalStorage) {
+                loadedArticleLocalStorage.push(dataOptionsSelectedArticle);
+                localStorage.setItem("products", JSON.stringify(loadedArticleLocalStorage)); 
+            } else {
+                newLoadedArticleLocalStorage = [];
+                newLoadedArticleLocalStorage.push(dataOptionsSelectedArticle);
+                localStorage.setItem("products", JSON.stringify(newLoadedArticleLocalStorage));
             }
+                    window.location.href = "basket-orinoco.html";
+                }
             else {
                 window.location = "index.html";
             }
         }
-        helpUser();
-
-        // Vérifier l'existence d'une clé "products"
-        let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("products"));
-        
-        if(loadedArticleLocalStorage) {
-            loadedArticleLocalStorage.push(dataOptionsSelectedArticle);
-            localStorage.setItem("products", JSON.stringify(loadedArticleLocalStorage)); 
-    
-        } else {
-            newLoadedArticleLocalStorage = [];
-            newLoadedArticleLocalStorage.push(dataOptionsSelectedArticle);
-            localStorage.setItem("products", JSON.stringify(newLoadedArticleLocalStorage));
-        }
+        helpUser(); 
     })
 }
 functionBtnLoadSelectedArticle();

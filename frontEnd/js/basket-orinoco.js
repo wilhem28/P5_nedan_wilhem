@@ -11,7 +11,6 @@ const positionElement = document.getElementById("orinoco-articles-selection-cont
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
 let loadProducts = JSON.parse(localStorage.getItem("products"));
-
 // // Fonction de construction de la table de l'I.D des articles
 // const tableProducts = () => {
     
@@ -74,7 +73,7 @@ const fetchDataFurnitureApi = async () => {
         } 
 }
 
-// -------------------- ACTIVE BUTTON DELETE ITEM ---------------------
+// Suppression d'un élément du panier 
 let getIdSelectedArticle = [];
 
 const functionBtnDeleteItem = async () => {
@@ -104,7 +103,7 @@ const functionBtnDeleteItem = async () => {
     }
 }
 
-// -------------------- INSERT BUTTON GLOBAL DELETE ---------------------
+// Insertion du bouton pour la suppression de l'ensemble des articles du panier
 
 const insertBtnGlobalDelete = async () => {
 
@@ -120,7 +119,7 @@ const insertBtnGlobalDelete = async () => {
     
 }
 
-// -------------------- ACTIVE BUTTON GLOBAL DELETE ---------------------
+// Activation du bouton de suppression de l'ensemble des articles du panier
 
 const activeBtnGlobalDelete = async () => {
 
@@ -144,7 +143,7 @@ const activeBtnGlobalDelete = async () => {
     })
 }
 
-// -------------------- TOTAL PRICE ---------------------
+// Affichage du prix total
 
 let resultTotalPriceArticles = [];
 
@@ -197,7 +196,7 @@ const functionTotalPrice = async () => {
 }
 
 
-// -------------------- DISPLAY FORM ---------------------
+// Affichage du formulaire
 
 const functionDisplayForm = async () => {
 
@@ -208,63 +207,48 @@ const functionDisplayForm = async () => {
     const templateForm = 
         `
         <form id= "form-validation">
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <label for="idUserLastName" class="userLastName">Nom</label>
-                        </td>
-                        <td>
-                            <input type="text" name="usererLastName" id="idUserLastName">
-                            <i class="far fa-check-circle"></i>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="idBuyerFirstName">Prénom</label>
-                        </td>
-                        <td>
-                            <input type="text" name="userFirstName" id="idUserFirstName">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="idEmail">E - mail</label>
-                        </td>
-                        <td>
-                            <input type="email" name="email" id="idEmail">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="idAddress">Adresse</label>
-                        </td>
-                        <td>
-                            <input name="address" id="idAddress" rows="5">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for="idCountry">Ville</label>
-                        </td>
-                        <td>
-                            <input type="text" name="country" id="idCountry">
-                        </td>
-                    </tr>
-                    <tr>
-                    <td></td>
-                        <td>
-                            <button id="btnSubmit" type="submit">COMMANDER</button>
-                        </td>
-                    </tr>   
-                </tbody>
-            </table>
+            <div class="container-input-information">
+                <label for="idUserLastName" class="userLastName">Nom</label>      
+                <input type="text" name="usererLastName" id="idUserLastName">
+                <i class="far fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="errorMessage"> Attention !</span>
+            </div> 
+            <div class="container-input-information">          
+                <label for="idBuyerFirstName">Prénom</label>
+                <input type="text" name="userFirstName" id="idUserFirstName">
+                <i class="far fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="errorMessage"> Attention !</span>
+            </div>
+            <div class="container-input-information"> 
+                <label for="idEmail">E - mail</label>
+                <input type="email" name="email" id="idEmail">
+                <i class="far fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="errorMessage"> Attention !</span>
+            </div>
+            <div class="container-input-information"> 
+                <label for="idAddress">Adresse</label>
+                <input name="address" id="idAddress">
+                <i class="far fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="errorMessage"> Attention !</span>
+            </div> 
+            <div class="container-input-information"> 
+                <label for="idCountry">Ville</label>
+                <input type="text" name="country" id="idCountry">
+                <i class="far fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <span class="errorMessage"> Attention !</span>
+            </div>        
+                <button id="btnSubmit" type="submit" value="order">COMMANDER</button>      
         </form>
         `
         displayForm.insertAdjacentHTML("afterend",templateForm);
 }
 
-// -------------------- VALID INPUT FORM ---------------------
+// Validation de chaque champs du formulaire
 
 const functionValidInputsForm = async () => {
 
@@ -275,78 +259,137 @@ const functionValidInputsForm = async () => {
     const btnSendForm = document.getElementById("btnSubmit");
     let responseFetchPost =[];
 
+    const getFirstName = document.getElementById("idUserFirstName");
+    const getLastName = document.getElementById("idUserLastName");
+    const getAddress = document.getElementById("idAddress");
+    const getCity = document.getElementById("idCountry");
+    const getEmail = document.getElementById("idEmail");
+
     btnSendForm.addEventListener("click", (event) => {
         event.preventDefault();
 
-        // Création d'un objet pour répertorier les informations recueillies du user
+        //Création d'un objet pour répertorier les informations recueillies du user
         contact = {
 
-            firstName: document.getElementById("idUserFirstName").value,
-            lastName: document.getElementById("idUserLastName").value,
-            address: document.getElementById("idAddress").value,
-            city: document.getElementById("idCountry").value,
-            email: document.getElementById("idEmail").value,
+            firstName: document.getElementById("idUserFirstName").value.trim(),
+            lastName: document.getElementById("idUserLastName").value.trim(),
+            address: document.getElementById("idAddress").value.trim(),
+            city: document.getElementById("idCountry").value.trim(),
+            email: document.getElementById("idEmail").value.trim(),
         }
-        
-        // Fonction de validation du nom patronymique, du prénom et du nom de la ville
-        const validLastNameFirstNameCity = () => {
 
-            if ((/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.lastName)) && (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.firstName)) && (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.city))) {
-                console.log("OKAY");
-                return true;
-            } else {
-                console.log("KO");
+        // const firstNameValue = getFirstName.value.trim();
+        // const lastNameValue = getLastName.value.trim();
+        // const addressValue = getAddress.value.trim();
+        // const cityValue = getCity.value.trim();
+        // const emailValue = getEmail.value.trim();
+
+        const checklastName = () => {
+
+            if(contact.lastName === "") {
+                setErrorFor(getLastName, "Le champs du nom est vide !");
                 return false;
-            } 
-        }
-       
-        // Fonction de validation de l'e-mail
-        const validEmail = () => {
-
-            if ((/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/).test(contact.email)) {
-                console.log("OKAYYYYY");
-                return true;
-            } else {
-                console.log("KO000");
+            }
+            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.lastName) == false) {
+                setErrorFor(getLastName, "Seuls les lettres sans accents sont valides !");
                 return false;
-            } 
-        }
-            
-        // Fonction de validation de l'adresse
-        const validAddress = () => {
-
-            if ((/^[\d\w\s]{10,40}$/).test(contact.address)) {
-                console.log("Wouaw");
+            }
+            else {
+                setSuccessFor(getLastName);
                 return true;
-            } else {
-                console.log("OH NONN");
-                return false;
-            } 
-        }
-    
-        // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
-        const loadDataForm = () => {
-
-            if(validLastNameFirstNameCity() && validEmail() && validAddress()) {
-                localStorage.setItem("contact", JSON.stringify(contact));
-                window.location.href = "confirm-orinoco.html";
-
-            } else {
-                formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
-                formTitleContainer.style.color = "red";
             }
         }
-        loadDataForm(); 
-        
-        // GLOBAL DATA CLIENT
+                 
+        const checkfirstName = () => {
+            if(contact.firstName === "") {
+                setErrorFor(getFirstName, "Le champs du prénom est vide !");
+                return false;
+            }
+            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.firstName) == false) {
+                setErrorFor(getFirstName, "Seuls les lettres sans accents sont valides !");
+                return false;
+            }
+            else {
+                setSuccessFor(getFirstName);
+                return true;
+            }
+        }
 
+        const checkCity = () => {
+            if(contact.city === "") {
+                setErrorFor(getCity, "Le champs de la ville est vide !");
+                return false;
+            }
+            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.city) == false) {
+                setErrorFor(getCity, "Seuls les lettres sans accents sont valides !");
+                return false;
+            }
+            else {
+                setSuccessFor(getCity);
+                return true;
+            } 
+        }
+
+        const checkEmail = () => {
+            if(contact.email === "") {
+                setErrorFor(getEmail, "Le champs de l'e-mail est vide !");
+                return false;
+            }
+            else if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(contact.email) == false) {
+                setErrorFor(getEmail, "Exemple : cheick.antadiop@alkebulan.com !");
+                return false;
+            }
+            else {
+                setSuccessFor(getEmail);
+                return true;
+            }
+        }
+
+        const checkAddress = () => {
+            if(contact.address === "") {
+                setErrorFor(getAddress, "Le champs de l'adresse est vide !");
+                return false;
+            }
+            else if (/^[\d\w\s]{10,40}$/.test(contact.address) == false) {
+                setErrorFor(getAddress, "L'adresse doit contenir entre 10 et 40 caractères");
+                return false;
+            }
+            else {
+                setSuccessFor(getAddress);
+                return true;
+            }
+        }
+            
+        function setErrorFor(input, message) {
+            const inputParent = input.parentElement;
+            const errorMsg = inputParent.querySelector(".errorMessage");
+
+            errorMsg.innerHTML = message;
+            inputParent.className = "container-input-information error";
+        }
+
+        function setSuccessFor(input) {
+            const inputParent = input.parentElement;
+
+            inputParent.className = "container-input-information success";
+
+        }
+
+        // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
+
+        // GLOBAL DATA CLIENT
         globalDataClient = {contact,products,};
-        
-         // FETCH POST
+
+        const loadDataForm = async () => {
+  
+        if(checklastName() && checkfirstName() && checkEmail() && checkAddress() && checkCity()) {
+            localStorage.setItem("contact", JSON.stringify(contact));
+            window.location.href = "confirm-orinoco.html";
+            
+            // FETCH POST
          
          const fetchPost = async () => {
          
-            
             await fetch("http://localhost:3000/api/furniture/order", {
          
                  method: "POST",
@@ -365,8 +408,13 @@ const functionValidInputsForm = async () => {
              localStorage.setItem("products", JSON.stringify(responseFetchPost)); 
          }
          fetchPost();
-    })  
+
+        } else {
+            formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
+            formTitleContainer.style.color = "red";
+        }
+        }
+        loadDataForm();  
+    })     
 }
 functionValidInputsForm();
-
-

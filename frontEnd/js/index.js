@@ -9,7 +9,7 @@ const indexTitleContainer = document.querySelector(".title-container");
 
 // Fonction de récupération de l'ensemble des informations de chaque article disponible dans l'A.P.I avec les mots clés ASYNC & AWAIT
 // Les informations des articles préalablement observées avec l'usage du CONSOLE.LOG, sont placées à l'intérieur d'un tableau []
-// Nous obeservons un tableau contenant 5 objets ((5) & length: 5) avec les informations suivantes pour chaque objet (article) :
+// Nous observons un tableau contenant 5 objets ((5) & length: 5) avec les informations suivantes pour chaque objet (article) :
 // ---- La description (description)
 // ---- L'url de l'image (imageUrl)
 // ---- Le nom (name)
@@ -30,7 +30,7 @@ const fetchDataFurnitureApi = async () => {
         } 
 }
    
-// Fonction d'itération relative à la construction du modèle de présenation des articles
+// Fonction d'itération relative à la construction du modèle de présentation des articles
 // La boucle FOR permet de répertorier dynamiquement la totalité des articles présents
 const iterationAvaiblesArticles = async () => {
 
