@@ -1,9 +1,9 @@
 // Initialisation de variables utiles
 
-// let articlesSoldByOrinoco = [];
 let availablesArticlesHtmlStructure = [];
 
 // Sélection de certaines éléments du D.O.M placés dans des constantes
+
 const availablesArticlesContainer = document.getElementById("availables-articles-container");
 const indexTitleContainer = document.querySelector(".title-container");
 
@@ -17,6 +17,7 @@ const indexTitleContainer = document.querySelector(".title-container");
 // ---- Les différents vernis disponibles (varnish)
 
 // En cas d'incident, une pop-up est affiché
+
 const fetchDataFurnitureApi = async () => {
 
     const urlFurnitureApi = "http://localhost:3000/api/furniture/"; // Sélection de l'A.P.I furniture
@@ -32,6 +33,7 @@ const fetchDataFurnitureApi = async () => {
    
 // Fonction d'itération relative à la construction du modèle de présentation des articles
 // La boucle FOR permet de répertorier dynamiquement la totalité des articles présents
+
 const iterationAvaiblesArticles = async () => {
 
     await fetchDataFurnitureApi();
@@ -69,6 +71,7 @@ const iterationAvaiblesArticles = async () => {
 
 // Fonction d'affichage de l'ensemble des articles
 // En cas d'absence, d'élément dans le tableau availablesArticlesHtmlStructure, un message est injecté dans le container du titre de la page index.html
+
 const articlesDisplay = async () => {
 
     await iterationAvaiblesArticles();

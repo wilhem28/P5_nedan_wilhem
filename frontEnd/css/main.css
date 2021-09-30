@@ -203,10 +203,10 @@ article .title-container {
 
 article .title-container h1 {
   color: #491919;
-  font-size: 1.5rem;
+  font-size: 3vw;
   font-weight: 900;
   word-spacing: 3px;
-  padding: 5% 0;
+  padding: 1% 0;
   text-align: center;
 }
 
@@ -395,17 +395,17 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 article #availables-articles-container .article-orinoco .article-orinoco-figure .article-orinoco-container-preview .article-orinoco-icon .fa-eye:hover {
-  color: blue;
+  color: #491919;
   font-size: 1.8rem;
 }
 
 @media screen and (max-width: 425px) {
   article #availables-articles-container .article-orinoco .article-orinoco-figure .article-orinoco-container-preview .article-orinoco-icon .fa-eye {
     font-size: 1rem;
-    -webkit-transition: -webkit-transform 300ms ease;
-    transition: -webkit-transform 300ms ease;
-    transition: transform 300ms ease;
-    transition: transform 300ms ease, -webkit-transform 300ms ease;
+    -webkit-transition: -webkit-transform 500ms ease;
+    transition: -webkit-transform 500ms ease;
+    transition: transform 500ms ease;
+    transition: transform 500ms ease, -webkit-transform 500ms ease;
   }
   article #availables-articles-container .article-orinoco .article-orinoco-figure .article-orinoco-container-preview .article-orinoco-icon .fa-eye:hover {
     -webkit-transform: scale(1.2);
@@ -849,7 +849,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   width: 20%;
   height: 100%;
   color: #491919;
-  background-color: burlywood;
+  background-color: bisque;
   border-radius: 10px;
   font-size: 2.5vw;
   font-weight: bolder;
@@ -948,14 +948,15 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  width: 90%;
+  width: 70%;
   padding: 3% 8%;
-  background-color: aquamarine;
+  border-radius: 15px;
+  background-color: rgba(255, 228, 196, 0.336);
 }
 
 @media screen and (min-width: 1024px) {
   #form-validation {
-    width: 80%;
+    width: 50%;
   }
 }
 
@@ -968,6 +969,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 #form-validation .container-input-information label {
   display: inline-block;
   margin-bottom: 1%;
+  font-size: 1.5rem;
 }
 
 #form-validation .container-input-information input {
@@ -982,9 +984,15 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   border-radius: 5px;
 }
 
+@media screen and (min-width: 1024px) {
+  #form-validation .container-input-information input {
+    height: auto;
+  }
+}
+
 #form-validation .container-input-information i {
   position: absolute;
-  top: 30px;
+  top: 40px;
   right: 10px;
   visibility: hidden;
 }
@@ -999,6 +1007,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #form-validation #btnSubmit {
+  font-size: 2rem;
   color: #ffffff;
   background-color: #491919;
   border-radius: 5px;
@@ -1021,22 +1030,22 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #form-validation .container-input-information.error input {
-  border-color: red;
+  border-color: #ff0404;
 }
 
 #form-validation .container-input-information.error i.fa-check-circle {
   visibility: hidden;
-  color: red;
+  color: #ff0404;
 }
 
 #form-validation .container-input-information.error i.fa-exclamation-circle {
   visibility: visible;
-  color: red;
+  color: #ff0404;
 }
 
 #form-validation .container-input-information.error.error .errorMessage {
   visibility: visible;
-  color: red;
+  color: #ff0404;
 }
 
 .form-validation {
@@ -1054,7 +1063,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
   width: 80%;
-  margin-top: 10%;
+  margin-top: 5%;
   border: 5px solid #491919;
   border-radius: 15px;
   overflow: hidden;
@@ -1076,7 +1085,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  padding: 2% 1%;
+  padding: 1%;
 }
 
 .form-validation .container-total-price .textTotalPrice, .form-validation .container-total-price .totalPrice {
@@ -1085,14 +1094,14 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   font-size: 2vw;
   font-weight: bolder;
   color: #491919;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
 }
 
 .form-validation .container-total-price .totalPrice {
   font-size: 2.5vw;
   font-weight: bolder;
   color: blue;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .form-validation .container-number-order {
@@ -1110,7 +1119,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  padding: 2% 1%;
+  padding: 1%;
 }
 
 .form-validation .container-number-order .text-order {
@@ -1127,7 +1136,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   font-size: 2vw;
   font-weight: bolder;
   color: #491919;
-  margin-bottom: 5%;
+  margin-bottom: 1%;
 }
 
 .form-validation .container-number-order .number-order {

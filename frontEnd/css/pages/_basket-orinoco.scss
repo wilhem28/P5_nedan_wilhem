@@ -49,7 +49,7 @@
             width: 20%;
             height: 100%;
             color: $secondaryFontColor;
-            background-color: burlywood;
+            background-color: bisque;
             border-radius: 10px;
             font-size: 2.5vw;
             font-weight: bolder; 
@@ -101,11 +101,12 @@
     position: relative;
     display: flex;
     flex-flow: column nowrap;
-    width: 90%;
+    width: 70%;
     padding: 3% 8%;
-    background-color: aquamarine;
+    border-radius: 15px;
+    background-color: rgba(255, 228, 196, 0.336);
     @media screen and(min-width: 1024px){
-        width: 80%;
+        width: 50%;
     }
     .container-input-information {
         position: relative;
@@ -114,6 +115,7 @@
         label {
             display: inline-block;
             margin-bottom: 1%;
+            font-size: 1.5rem;
         }
         input {
             display: block;
@@ -127,10 +129,13 @@
                 weight: 900;
             }
             border-radius: 5px;
+            @media screen and(min-width: 1024px) {
+                height: auto;
+            }
         }
         i {
             position: absolute;
-            top: 30px;
+            top: 40px;
             right: 10px;
             visibility: hidden;
         }
@@ -144,6 +149,7 @@
         }
     }
     #btnSubmit {
+        font-size: 2rem;
         color: $tertiaryFontColor;
         background-color: $secondaryBackgroundColor;
         border-radius: 5px;
@@ -162,18 +168,18 @@
         color: blue;   
     }
     .container-input-information.error input {
-        border-color: red;
+        border-color: rgb(255, 4, 4);
     }
     .container-input-information.error i.fa-check-circle {
         visibility: hidden;
-        color: red;   
+        color: rgb(255, 4, 4);   
     }
     .container-input-information.error i.fa-exclamation-circle {
         visibility: visible;
-        color: red;   
+        color: rgb(255, 4, 4);   
     }
     .container-input-information.error.error .errorMessage {
         visibility: visible;
-        color: red;   
+        color: rgb(255, 4, 4);  
     }
 }

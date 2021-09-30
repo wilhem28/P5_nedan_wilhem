@@ -1,13 +1,17 @@
 // Sélection de la balise form
+
 const confirmForm = document.querySelector(".form-validation");
 
 // Récupération des informations reçues dans le local storage résultant du retour du fetch post
+
 const finalResponse = JSON.parse(localStorage.getItem("products"));
+const finalTotalPrice = JSON.parse(localStorage.getItem("totalPrice"));
 
 // Insertion d'un message de remerciement personnalisé
+
 const finalMsg = async () => {
 
-    if(finalResponse) {
+    if(finalResponse !== null) {
 
         const titleContainer = document.querySelector(".title-container");
 
@@ -23,7 +27,7 @@ const finalMsg = async () => {
 
         const finalErrorMsg = 
         `
-            <h1>Excusez - nous, ${finalResponse.contact.firstName} !<br/> Votre commande n'est pas validée.</h1>
+            <h1>Excusez - nous !<br/> Votre commande n'est pas validée.</h1>
 
         `
         titleContainer.innerHTML = finalErrorMsg;
@@ -31,6 +35,7 @@ const finalMsg = async () => {
 }
 
 // Récapitulatif de la commande de l'utilisateur avec le montant final et le numéro de commande du fetch post
+
 const orderGeneralInformations = async () => {
 
     await finalMsg();
@@ -41,7 +46,7 @@ const orderGeneralInformations = async () => {
             `
                 <div class="container-total-price">
                     <p class="textTotalPrice">Montant total :</p>
-                    <p class="totalPrice">${finalResponse.products[0].price / 100} €</p>
+                    <p class="totalPrice">${finalTotalPrice} €</p>
                 </div>
                 <div class="container-number-order">
                     <p class="text-order">Votre numéro de commande :</p>
@@ -64,6 +69,7 @@ const orderGeneralInformations = async () => {
 }
 
 // Injection d'un bouton de retour vers l'accueil
+
 const deleteLocalStorageKey =  async () => {
     
     await orderGeneralInformations();
@@ -80,7 +86,7 @@ const deleteLocalStorageKey =  async () => {
     confirmForm.insertAdjacentHTML("afterend", structureHtmlBtnHome)  
 }
 
-// Suppression de l'objet "products" du local storage
+// Suppression des clés "products" et "totalPrice" du local storage
 
 const functionReturnHome = async () => {
 
@@ -89,9 +95,10 @@ const functionReturnHome = async () => {
     const btnHome = document.getElementById("btnHome");
     
     btnHome.addEventListener("click", (event) => {
-        event.preventDefault()
+        event.preventDefault();
 
-        localStorage.removeItem("products");
+        localStorage.removeItem("products", "finalTotalPrice");
+        localStorage.removeItem("totalPrice");
         window.location.href = "index.html";
     })
 

@@ -1,24 +1,21 @@
-// --------------- UTILS VARIABLES AND CONSTANT----------------
+// Variables utiles
+
 let structureArticlesBasket = [];
 let articlesSoldByOrinoco = [];
 let globalDataClient = [];
 let products = [];
-// --------------- DISPLAY ARTICLES BASKET ----------------
+
+// Affichage des articles sélectionés dans le panier
+
 const positionElement = document.getElementById("orinoco-articles-selection-container");
 
 // Déclaration de la variable "loadProduct" qui récupère les informations du localStorage et les convertit en javascript
-
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
 let loadProducts = JSON.parse(localStorage.getItem("products"));
-// // Fonction de construction de la table de l'I.D des articles
-// const tableProducts = () => {
-    
-          
-    
-// tableProducts();
 
 // Fonction d'affichage du panier de la selection
+
 const basketDisplay = async () => {
 
 if(loadProducts == null || loadProducts == 0) {
@@ -132,10 +129,12 @@ const activeBtnGlobalDelete = async () => {
 
         event.preventDefault();
 
-        if(localStorage.removeItem("products") !== null) {
+        if( loadProducts !== null) {
 
             alert("Votre panier a été vidé !");
+            localStorage.removeItem("products"),
             window.location.href = "basket-orinoco.html";
+
         } else {
             alert("Votre panier est vide !")  
         }
@@ -188,13 +187,8 @@ const functionTotalPrice = async () => {
                     </div>
                 `
         positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles );
-
-
-
-
     }   
 }
-
 
 // Affichage du formulaire
 
@@ -255,7 +249,6 @@ const functionValidInputsForm = async () => {
     await functionDisplayForm();
 
     const formTitleContainer = document.querySelector(".title-container");
-    const formValidation = document.getElementById("form-validation");
     const btnSendForm = document.getElementById("btnSubmit");
     let responseFetchPost =[];
 
@@ -266,6 +259,7 @@ const functionValidInputsForm = async () => {
     const getEmail = document.getElementById("idEmail");
 
     btnSendForm.addEventListener("click", (event) => {
+
         event.preventDefault();
 
         //Création d'un objet pour répertorier les informations recueillies du user
@@ -278,23 +272,15 @@ const functionValidInputsForm = async () => {
             email: document.getElementById("idEmail").value.trim(),
         }
 
-        // const firstNameValue = getFirstName.value.trim();
-        // const lastNameValue = getLastName.value.trim();
-        // const addressValue = getAddress.value.trim();
-        // const cityValue = getCity.value.trim();
-        // const emailValue = getEmail.value.trim();
-
         const checklastName = () => {
 
             if(contact.lastName === "") {
                 setErrorFor(getLastName, "Le champs du nom est vide !");
                 return false;
-            }
-            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.lastName) == false) {
+            } else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.lastName) == false) {
                 setErrorFor(getLastName, "Seuls les lettres sans accents sont valides !");
                 return false;
-            }
-            else {
+            } else {
                 setSuccessFor(getLastName);
                 return true;
             }
@@ -304,12 +290,10 @@ const functionValidInputsForm = async () => {
             if(contact.firstName === "") {
                 setErrorFor(getFirstName, "Le champs du prénom est vide !");
                 return false;
-            }
-            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.firstName) == false) {
+            } else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.firstName) == false) {
                 setErrorFor(getFirstName, "Seuls les lettres sans accents sont valides !");
                 return false;
-            }
-            else {
+            } else {
                 setSuccessFor(getFirstName);
                 return true;
             }
@@ -319,12 +303,10 @@ const functionValidInputsForm = async () => {
             if(contact.city === "") {
                 setErrorFor(getCity, "Le champs de la ville est vide !");
                 return false;
-            }
-            else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.city) == false) {
+            } else if (/^[A-Za-z][-'a-zA-Z ]{3,20}$/.test(contact.city) == false) {
                 setErrorFor(getCity, "Seuls les lettres sans accents sont valides !");
                 return false;
-            }
-            else {
+            } else {
                 setSuccessFor(getCity);
                 return true;
             } 
@@ -334,12 +316,10 @@ const functionValidInputsForm = async () => {
             if(contact.email === "") {
                 setErrorFor(getEmail, "Le champs de l'e-mail est vide !");
                 return false;
-            }
-            else if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(contact.email) == false) {
+            } else if (/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(contact.email) == false) {
                 setErrorFor(getEmail, "Exemple : cheick.antadiop@alkebulan.com !");
                 return false;
-            }
-            else {
+            } else {
                 setSuccessFor(getEmail);
                 return true;
             }
@@ -349,12 +329,10 @@ const functionValidInputsForm = async () => {
             if(contact.address === "") {
                 setErrorFor(getAddress, "Le champs de l'adresse est vide !");
                 return false;
-            }
-            else if (/^[\d\w\s]{10,40}$/.test(contact.address) == false) {
+            } else if (/^[\d\w\s]{10,40}$/.test(contact.address) == false) {
                 setErrorFor(getAddress, "L'adresse doit contenir entre 10 et 40 caractères");
                 return false;
-            }
-            else {
+            } else {
                 setSuccessFor(getAddress);
                 return true;
             }
@@ -372,47 +350,47 @@ const functionValidInputsForm = async () => {
             const inputParent = input.parentElement;
 
             inputParent.className = "container-input-information success";
-
         }
 
         // Fonction d'enregistrement dans le local storage des informations reçues du formulaire
-
         // GLOBAL DATA CLIENT
-        globalDataClient = {contact,products,};
 
-        const loadDataForm = async () => {
-  
-        if(checklastName() && checkfirstName() && checkEmail() && checkAddress() && checkCity()) {
-            localStorage.setItem("contact", JSON.stringify(contact));
-            window.location.href = "confirm-orinoco.html";
+        globalDataClient = {contact,products};
+
+            const loadDataForm = async () => {
             
-            // FETCH POST
-         
-         const fetchPost = async () => {
-         
-            await fetch("http://localhost:3000/api/furniture/order", {
-         
-                 method: "POST",
-         
-                 body: JSON.stringify(globalDataClient),
-         
-                 headers : {
-                     'Accept': 'application/json',
-                     "content-Type": "application/json",
-                 },
-             })
-             .then(response => response.json())
-             .then (data => responseFetchPost = data)
-             .catch((error) => alert('Un incident est survenu lors de la confirmation :' + ' ' + error.message));
+            if(checklastName() && checkfirstName() && checkEmail() && checkAddress() && checkCity() && globalDataClient.products.length !== 0) {
+                localStorage.setItem("contact", JSON.stringify(contact));
+                localStorage.setItem("totalPrice",JSON.stringify(resultTotalPriceArticles));
+                window.location.href = "confirm-orinoco.html";
 
-             localStorage.setItem("products", JSON.stringify(responseFetchPost)); 
-         }
-         fetchPost();
+                // FETCH POST
+            
+             const fetchPost = async () => {
+            
+                await fetch("http://localhost:3000/api/furniture/order", {
+            
+                    method: "POST",
+            
+                    body: JSON.stringify(globalDataClient),
+            
+                    headers : {
+                        'Accept': 'application/json',
+                        "content-Type": "application/json",
+                    },
+                })
+                .then(response => response.json())
+                .then (data => responseFetchPost = data)
+                .catch((error) => alert('Un incident est survenu lors de la confirmation :' + ' ' + error.message));
 
-        } else {
-            formTitleContainer.innerHTML = "<h1>Les informations recueillies du formulaire n'ont pas été enregistrées !";
-            formTitleContainer.style.color = "red";
-        }
+                localStorage.setItem("products", JSON.stringify(responseFetchPost)); 
+            }
+            fetchPost();
+
+            } else {
+                // formTitleContainer.innerHTML = "<h1>Le formulaire est incomplet !";
+                formTitleContainer.style.color = "red";
+            }
         }
         loadDataForm();  
     })     

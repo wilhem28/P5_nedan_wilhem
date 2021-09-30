@@ -3,7 +3,7 @@
     @include displayRowCenter;
     flex-flow: column nowrap;
     width: 80%;
-    margin-top: 10%;
+    margin-top: 5%;
     border: 5px solid rgba(73, 25, 25, 1);
     border-radius: 15px;
     overflow: hidden;
@@ -13,7 +13,7 @@
         width: 100%;
         flex-flow: column nowrap;
 
-        padding: 2% 1%;
+        padding: 1%;
         .textTotalPrice, .totalPrice {
             text-transform: uppercase;
             text-align: justify;
@@ -22,7 +22,7 @@
                 weight: bolder;
             }
             color: rgba(73, 25, 25, 1);
-            margin-bottom: 3%;
+            margin-bottom: 1%;
         }
         .totalPrice {
             font: {
@@ -30,7 +30,7 @@
                 weight: bolder;
             }
             color: blue;
-            margin-bottom: 5%;
+            margin-bottom: 1%;
         }
         
     }
@@ -39,7 +39,7 @@
         width: 100%;
         flex-flow: column nowrap;
 
-        padding: 2% 1%;
+        padding: 1%;
         .text-order{
             @include displayRowCenter;
             text-transform: uppercase;
@@ -48,7 +48,7 @@
                 weight: bolder;
             }
             color: rgba(73, 25, 25, 1);
-            margin-bottom: 5%;
+            margin-bottom: 1%;
         }
         .number-order {
             display: flex;

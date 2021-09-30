@@ -130,7 +130,6 @@ const display0ptionsSelectedArticle = async () => {
     }
 }
 
-
 // Fonction d'affichage du choix de la quantité par l'utilisateur
 const displayAmountSelectedArticle = async () => {
 
