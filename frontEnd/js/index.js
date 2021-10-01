@@ -64,8 +64,8 @@ const iterationAvaiblesArticles = async () => {
                 </a>
          `
     } 
-    }else {
-        alert('Vos articles ne peuvent pas être affcihés ! Veuillez tenter une nouevlle connexion.');   
+    } else {
+        alert('Vos articles ne peuvent pas être affichés ! Veuillez tenter une nouevlle connexion.');   
     }
 };
 

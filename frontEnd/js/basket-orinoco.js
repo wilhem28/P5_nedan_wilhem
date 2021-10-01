@@ -13,7 +13,7 @@ const positionElement = document.getElementById("orinoco-articles-selection-cont
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
 let loadProducts = JSON.parse(localStorage.getItem("products"));
-console.log(loadProducts);
+
 // Fonction d'affichage du panier de la selection
 
 const basketDisplay = async () => {
@@ -30,7 +30,7 @@ if(loadProducts == null || loadProducts == 0) {
 
 } else {
 
-        for( let w = 0; w < loadProducts.length; w++) {
+        for(let w = 0; w < loadProducts.length; w++) {
         
             products.push(loadProducts[w].idSelectedArtcile);
         }
@@ -54,22 +54,6 @@ if(loadProducts == null || loadProducts == 0) {
     }
 }
 
-// -------------------- DATA FURNITURE API ---------------------
-const fetchDataFurnitureApi = async () => {
-
-    await basketDisplay();
-
-    const urlFurnitureApi = "http://localhost:3000/api/furniture/"; // Sélection de l'A.P.I furniture
-        try {
-            await fetch(urlFurnitureApi)
-            .then(res => res.json())
-            .then(data => articlesSoldByOrinoco = data);
-        }
-        catch(error) {
-            alert('Un incident est survenu lors de la connexion :' + ' ' + error.message);
-        } 
-}
-
 // Suppression d'un élément du panier 
 let getIdSelectedArticle = [];
 
@@ -79,37 +63,20 @@ const functionBtnDeleteItem = async () => {
     await basketDisplay();
 
     const btnArticleDelete = document.querySelectorAll(".btn-article-delete");
-   console.log(btnArticleDelete);
+   
     for ( let w = 0 ; w < btnArticleDelete.length ; w++) {
         
         btnArticleDelete[w].addEventListener("click", (event) => {
             event.preventDefault();
 
-        // Select id selected article
-        
         let deleteIdSelectedArticle = loadProducts[w].idSelectedArtcile;
-        // deleteIdSelectedArticle = "5be9cc611c9d440000c1421e";
-        console.log(deleteIdSelectedArticle);
-
         let deletePriceSelectedArticle = loadProducts[w].priceSelectedArticle;
-        
-        console.log(deletePriceSelectedArticle);
-        
         let deleteOptionSelectedArticle = loadProducts[w].optionSelectedArticle;
-        // deleteOptionSelectedArticle = "Chocolate";
-        console.log(deleteOptionSelectedArticle);
-
         let deleteQuantitySelectedArticle = loadProducts[w].quantitySelectedArticle;
-
-        let deletepriceSelectedArticle = loadProducts[w].priceSelectedArticle;
-        
         
         // Delete selected article in local storage
-        console.log(loadProducts);
         
-        loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle || el.optionSelectedArticle !== deleteOptionSelectedArticle || el.quantitySelectedArticle !== deleteQuantitySelectedArticle || el.priceSelectedArticle !== deletepriceSelectedArticle);
-    
-        console.log(loadProducts);
+        loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle || el.optionSelectedArticle !== deleteOptionSelectedArticle || el.quantitySelectedArticle !== deleteQuantitySelectedArticle || el.priceSelectedArticle !== deletePriceSelectedArticle);
 
         // loadProducts = loadProducts.filter(el => el.priceSelectedArtcile !== deletePriceSelectedArticle);
         // loadProducts = loadProducts.filter(el => el.optionsSelectedArtcile !== deleteOptionSelectedArticle);
@@ -153,7 +120,7 @@ const activeBtnGlobalDelete = async () => {
 
         event.preventDefault();
 
-        if( loadProducts !== null) {
+        if(loadProducts !== null) {
 
             alert("Votre panier a été vidé !");
             localStorage.removeItem("products"),
@@ -296,7 +263,7 @@ const functionValidInputsForm = async () => {
             email: document.getElementById("idEmail").value.trim(),
         }
 
-        const checklastName = () => {
+        const checkLastName = () => {
 
             if(contact.lastName === "") {
                 setErrorFor(getLastName, "Le champs du nom est vide !");
@@ -310,7 +277,7 @@ const functionValidInputsForm = async () => {
             }
         }
                  
-        const checkfirstName = () => {
+        const checkFirstName = () => {
             if(contact.firstName === "") {
                 setErrorFor(getFirstName, "Le champs du prénom est vide !");
                 return false;
@@ -381,9 +348,9 @@ const functionValidInputsForm = async () => {
 
         globalDataClient = {contact,products};
 
-            const loadDataForm = async () => {
+        const loadDataForm = async () => {
             
-            if(checklastName() && checkfirstName() && checkEmail() && checkAddress() && checkCity() && globalDataClient.products.length !== 0) {
+            if(checkLastName() && checkFirstName() && checkEmail() && checkAddress() && checkCity() && globalDataClient.products.length !== 0) {
                 localStorage.setItem("contact", JSON.stringify(contact));
                 localStorage.setItem("totalPrice",JSON.stringify(resultTotalPriceArticles));
                 window.location.href = "confirm-orinoco.html";
@@ -412,7 +379,7 @@ const functionValidInputsForm = async () => {
             fetchPost();
 
             } else {
-                // formTitleContainer.innerHTML = "<h1>Le formulaire est incomplet !";
+                formTitleContainer.innerHTML = "<h1>Votre panier est vide !</h1>";
                 formTitleContainer.style.color = "red";
             }
         }

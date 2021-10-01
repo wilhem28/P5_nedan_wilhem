@@ -1,6 +1,6 @@
 // Initialisation de variables utiles
 
-let DataUrlSelectedArticle = [];
+let dataUrlSelectedArticle = [];
 let idValueSelectedArticle = [];
 let dataSelectedArticle = [];
 let userAmountChoice = [];
@@ -9,14 +9,14 @@ let userAmountChoice = [];
 
 const titleContainer = document.querySelector('.title-container');
 
-//Fonction de récupération de l'information relative à l'article sélectionné par l'utilisateur 
+//Fonction de récupération de l'information placée dynamiquement dans l'url de l'article sélectionné par l'utilisateur 
 // La propriété SEARCH de l'interface LOCATION récupère l'élément '?' et les paramètres suivants de l'url
 
 const getDataUrlSelectedArticle = async () => {
 
-    DataUrlSelectedArticle = window.location.search;
+    dataUrlSelectedArticle = window.location.search;
     
-    if(DataUrlSelectedArticle !== null) {  
+    if(dataUrlSelectedArticle !== null) {  
         titleContainer.innerHTML = "<h1>VOTRE CHOIX</h1>";
     } else {
         titleContainer.innerHTML = "<h1>Votre choix n'a pas été pris en compte ! Veuillez retourner à la page d'accueil.</h1>";
@@ -29,7 +29,7 @@ const getIdValueSelectedArticle = async () => {
 
     await getDataUrlSelectedArticle();
 
-    const urlSearchParams = new URLSearchParams(DataUrlSelectedArticle);
+    const urlSearchParams = new URLSearchParams(dataUrlSelectedArticle);
     idValueSelectedArticle = urlSearchParams.get('id');
 }
 
@@ -47,7 +47,7 @@ const getDataSelectedArticle = async () => {
         .then(data => dataSelectedArticle = data);
        
     } catch {  
-        titleContainer.innerHTML = "<p>VOTRE SÉLECTION N'EST PAS DISPONIBLE</p>"
+        titleContainer.innerHTML = "<p>VOTRE SÉLECTION N'EST PAS DISPONIBLE</p>";   
     } 
 }
 
@@ -86,7 +86,7 @@ const structureFunctionSelectedArticle = async () => {
     ;  
 }
 
-// Fonction d'affichage dynamique des options de l'article sélectionné 
+// Fonction d'affichage dynamique des caractéristiques de l'article sélectionné 
 
 const displayCharacteristicsSelectedArticle = async () => {
 
@@ -174,8 +174,7 @@ const functionBtnLoadSelectedArticle = async () => {
             priceSelectedArticle: dataSelectedArticle.price / 100,
             quantitySelectedArticle: parseInt(userAmountChoice.value),
         }
-
-    
+ 
         // Fonction d'accompagnement de l'utilsateur
 
         const helpUser = () => {
