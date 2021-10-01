@@ -902,7 +902,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  padding: 0 15px 10% 0;
+  padding: 0 15px 5% 0;
 }
 
 #orinoco-articles-selection-container .container-total-price-article .text-total-price-article {
@@ -952,6 +952,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   padding: 3% 8%;
   border-radius: 15px;
   background-color: rgba(255, 228, 196, 0.336);
+  border: 1px solid #491919;
 }
 
 @media screen and (min-width: 1024px) {
@@ -970,6 +971,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   display: inline-block;
   margin-bottom: 1%;
   font-size: 1.5rem;
+  color: #491919;
 }
 
 #form-validation .container-input-information input {
@@ -978,7 +980,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   height: 30px;
   padding: 10px;
   margin-bottom: 10px;
-  border: 2px solid black;
+  border: 2px solid #491919;
   font-size: 1rem;
   font-weight: 900;
   border-radius: 5px;
@@ -997,22 +999,33 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   visibility: hidden;
 }
 
+@media screen and (min-width: 1024px) {
+  #form-validation .container-input-information i {
+    top: 50px;
+  }
+}
+
 #form-validation .container-input-information .errorMessage {
   position: absolute;
   font-size: 0.7rem;
   bottom: 5px;
-  padding-top: 1%;
   left: 0;
   visibility: hidden;
 }
 
 #form-validation #btnSubmit {
-  font-size: 2rem;
+  font-size: 1.1rem;
   color: #ffffff;
   background-color: #491919;
   border-radius: 5px;
   border: none;
   padding: 3% 0;
+}
+
+@media screen and (min-width: 1024px) {
+  #form-validation #btnSubmit {
+    font-size: 1.5rem;
+  }
 }
 
 #form-validation .container-input-information.success input {
@@ -1030,22 +1043,36 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
 }
 
 #form-validation .container-input-information.error input {
-  border-color: #ff0404;
+  border-color: #ff3f04;
 }
 
 #form-validation .container-input-information.error i.fa-check-circle {
   visibility: hidden;
-  color: #ff0404;
+  color: #ff3f04;
 }
 
 #form-validation .container-input-information.error i.fa-exclamation-circle {
   visibility: visible;
-  color: #ff0404;
+  color: #ff3f04;
 }
 
 #form-validation .container-input-information.error.error .errorMessage {
   visibility: visible;
-  color: #ff0404;
+  font-weight: 900;
+  color: #ff3f04;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 768px) {
+  #form-validation .container-input-information.error.error .errorMessage {
+    font-size: 0.6rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  #form-validation .container-input-information.error.error .errorMessage {
+    font-size: 0.4rem;
+  }
 }
 
 .form-validation {

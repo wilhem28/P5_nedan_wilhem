@@ -23,7 +23,7 @@ const getDataUrlSelectedArticle = async () => {
     }
 }
 
-// Fonction de récupération de la valeur de l'id transmise par l'url de la page products_orinoco.html?id=5be9cc611c9d440000c1421e
+// Fonction de récupération de la valeur de l'id transmise par l'url de la page article_orinoco.html?id=5be9cc611c9d440000c1421e
 
 const getIdValueSelectedArticle = async () => {
 
@@ -58,31 +58,31 @@ const structureFunctionSelectedArticle = async () => {
     await getDataSelectedArticle();
 
     structureSelectedArticle = 
-    `
-        <div class="selected-article">
-            <figure class="selected-article-figure">
-                <figcaption class="container-name-article"><h2>${dataSelectedArticle.name}</h2></figcaption>
-                <div class="container-image">
-                    <img class="selected-article-image-b" src="${dataSelectedArticle.imageUrl}"/>
+        `
+            <div class="selected-article">
+                <figure class="selected-article-figure">
+                    <figcaption class="container-name-article"><h2>${dataSelectedArticle.name}</h2></figcaption>
+                    <div class="container-image">
+                        <img class="selected-article-image-b" src="${dataSelectedArticle.imageUrl}"/>
+                    </div>
+                </figure>
+                <div class="selected-article-informations-container">
+                    <p class="container-description">${dataSelectedArticle.description}</p>
+                    <div class="container-price">${dataSelectedArticle.price / 100} €</div>
+                    <form id="idForm">
+                        <div class="container-option-product">
+                            <label for="idOptionsSelectedArticle">OPTIONS</label>
+                            <select name="optionsSelectedArticle" id="idOptionsSelectedArticle"></select>
+                        </div>
+                        <div class="container-Amount-product">
+                            <label for="idAmountSelectedArticle">QUANTITÉ</label>
+                            <select name="amountSelectedArticle" id="idAmountSelectedArticle"></select>
+                        </div>
+                        <button type="submit" id="id-btn-send" name="btn-send">Mettre dans mon panier</button>
+                    </form>
                 </div>
-            </figure>
-            <div class="selected-article-informations-container">
-                <p class="container-description">${dataSelectedArticle.description}</p>
-                <div class="container-price">${dataSelectedArticle.price / 100} €</div>
-                <form id="idForm">
-                    <div class="container-option-product">
-                        <label for="idOptionsSelectedArticle">OPTIONS</label>
-                        <select name="optionsSelectedArticle" id="idOptionsSelectedArticle"></select>
-                    </div>
-                    <div class="container-Amount-product">
-                        <label for="idAmountSelectedArticle">QUANTITÉ</label>
-                        <select name="amountSelectedArticle" id="idAmountSelectedArticle"></select>
-                    </div>
-                    <button type="submit" id="id-btn-send" name="btn-send">Mettre dans mon panier</button>
-                </form>
             </div>
-        </div>
-    `
+        `
     ;  
 }
 
@@ -184,7 +184,7 @@ const functionBtnLoadSelectedArticle = async () => {
             // Vérification de l'existence d'une clé "products"
             let loadedArticleLocalStorage = JSON.parse(localStorage.getItem("products"));
                 
-            if(loadedArticleLocalStorage) {
+            if(loadedArticleLocalStorage !== null) {
                 loadedArticleLocalStorage.push(dataOptionsSelectedArticle);
                 localStorage.setItem("products", JSON.stringify(loadedArticleLocalStorage)); 
             } else {

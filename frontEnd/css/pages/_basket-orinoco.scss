@@ -80,7 +80,7 @@
     .container-total-price-article {
         @include displayRowCenter;
         width: 100%;
-        padding: 0 15px 10% 0;
+        padding: 0 15px 5% 0;
        .text-total-price-article {
             @include displayRowCenter;
             justify-content: flex-end;
@@ -105,6 +105,7 @@
     padding: 3% 8%;
     border-radius: 15px;
     background-color: rgba(255, 228, 196, 0.336);
+    border: 1px solid $secondaryBorderColor;
     @media screen and(min-width: 1024px){
         width: 50%;
     }
@@ -116,6 +117,7 @@
             display: inline-block;
             margin-bottom: 1%;
             font-size: 1.5rem;
+            color: $secondaryFontColor;
         }
         input {
             display: block;
@@ -123,7 +125,7 @@
             height: 30px;
             padding: 10px;
             margin-bottom: 10px;
-            border: 2px solid black;
+            border: 2px solid $secondaryFontColor;
             font: {
                 size: 1rem;
                 weight: 900;
@@ -138,23 +140,28 @@
             top: 40px;
             right: 10px;
             visibility: hidden;
+            @media screen and(min-width: 1024px) {
+                top: 50px;
+            }
         }
         .errorMessage {
             position: absolute;
             font-size: 0.7rem;
             bottom: 5px;
-            padding-top: 1%;
             left: 0;
             visibility: hidden;
         }
     }
     #btnSubmit {
-        font-size: 2rem;
+        font-size: 1.1rem;
         color: $tertiaryFontColor;
         background-color: $secondaryBackgroundColor;
         border-radius: 5px;
         border: none;
         padding: 3% 0;
+        @media screen and(min-width: 1024px){
+            font-size: 1.5rem;
+        }
     }
     .container-input-information.success input {
         border-color: blue;
@@ -168,18 +175,26 @@
         color: blue;   
     }
     .container-input-information.error input {
-        border-color: rgb(255, 4, 4);
+        border-color: rgb(255, 63, 4);
     }
     .container-input-information.error i.fa-check-circle {
         visibility: hidden;
-        color: rgb(255, 4, 4);   
+        color: rgb(255, 63, 4);   
     }
     .container-input-information.error i.fa-exclamation-circle {
         visibility: visible;
-        color: rgb(255, 4, 4);   
+        color: rgb(255, 63, 4);   
     }
     .container-input-information.error.error .errorMessage {
         visibility: visible;
-        color: rgb(255, 4, 4);  
+        font-weight: 900;
+        color: rgb(255, 63, 4); 
+        letter-spacing: 2px; 
+        @media screen and(max-width: 768px){
+            font-size: 0.6rem;
+        }
+        @media screen and(max-width: 425px){
+            font-size: 0.4rem;
+        }
     }
 }

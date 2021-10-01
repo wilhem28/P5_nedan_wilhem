@@ -13,7 +13,7 @@ const positionElement = document.getElementById("orinoco-articles-selection-cont
 //  JSON.parse convertit les données au format JSON basées dans le localStorage en objet javascript
 
 let loadProducts = JSON.parse(localStorage.getItem("products"));
-
+console.log(loadProducts);
 // Fonction d'affichage du panier de la selection
 
 const basketDisplay = async () => {
@@ -75,20 +75,44 @@ let getIdSelectedArticle = [];
 
 const functionBtnDeleteItem = async () => {
 
-    await fetchDataFurnitureApi();
+    // await fetchDataFurnitureApi();
+    await basketDisplay();
 
     const btnArticleDelete = document.querySelectorAll(".btn-article-delete");
-   
+   console.log(btnArticleDelete);
     for ( let w = 0 ; w < btnArticleDelete.length ; w++) {
         
         btnArticleDelete[w].addEventListener("click", (event) => {
             event.preventDefault();
 
         // Select id selected article
+        
         let deleteIdSelectedArticle = loadProducts[w].idSelectedArtcile;
+        // deleteIdSelectedArticle = "5be9cc611c9d440000c1421e";
+        console.log(deleteIdSelectedArticle);
 
+        let deletePriceSelectedArticle = loadProducts[w].priceSelectedArticle;
+        
+        console.log(deletePriceSelectedArticle);
+        
+        let deleteOptionSelectedArticle = loadProducts[w].optionSelectedArticle;
+        // deleteOptionSelectedArticle = "Chocolate";
+        console.log(deleteOptionSelectedArticle);
+
+        let deleteQuantitySelectedArticle = loadProducts[w].quantitySelectedArticle;
+
+        let deletepriceSelectedArticle = loadProducts[w].priceSelectedArticle;
+        
+        
         // Delete selected article in local storage
-        loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle);
+        console.log(loadProducts);
+        
+        loadProducts = loadProducts.filter(el => el.idSelectedArtcile !== deleteIdSelectedArticle || el.optionSelectedArticle !== deleteOptionSelectedArticle || el.quantitySelectedArticle !== deleteQuantitySelectedArticle || el.priceSelectedArticle !== deletepriceSelectedArticle);
+    
+        console.log(loadProducts);
+
+        // loadProducts = loadProducts.filter(el => el.priceSelectedArtcile !== deletePriceSelectedArticle);
+        // loadProducts = loadProducts.filter(el => el.optionsSelectedArtcile !== deleteOptionSelectedArticle);
 
         // Update local storage
         localStorage.setItem("products", JSON.stringify(loadProducts))
