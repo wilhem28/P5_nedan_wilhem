@@ -109,6 +109,7 @@ const insertBtnGlobalDelete = async () => {
 
 // Activation du bouton de suppression de l'ensemble des articles du panier
 
+
 const activeBtnGlobalDelete = async () => {
 
     await insertBtnGlobalDelete();
@@ -128,8 +129,7 @@ const activeBtnGlobalDelete = async () => {
 
         } else {
             alert("Votre panier est vide !")  
-        }
-        
+        } 
     })
 }
 
@@ -177,7 +177,7 @@ const functionTotalPrice = async () => {
                         <div class="total-price-article"> 0 €</div>
                     </div>
                 `
-        positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles );
+        positionElement.insertAdjacentHTML("beforeend", structureHtmlTotalPriceArticles);
     }   
 }
 
@@ -377,6 +377,10 @@ const functionValidInputsForm = async () => {
                 localStorage.setItem("products", JSON.stringify(responseFetchPost)); 
             }
             fetchPost();
+
+            } else if (checkLastName() == false || checkFirstName() == false || checkEmail() == false || checkAddress() == false || checkCity() == false) {
+
+                formTitleContainer.innerHTML = "<h1>Vos informations personnelles se sont pas enregistrées !</h1>";
 
             } else {
                 formTitleContainer.innerHTML = "<h1>Votre panier est vide !</h1>";
