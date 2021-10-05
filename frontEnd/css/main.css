@@ -805,6 +805,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   color: #802480;
   padding: 1%;
   border: none;
+  cursor: pointer;
 }
 
 #orinoco-articles-selection-container .selection .articleName {
