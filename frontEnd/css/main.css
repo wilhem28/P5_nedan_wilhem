@@ -890,6 +890,7 @@ article #availables-articles-container .article-orinoco .article-orinoco-figure 
   background-color: #ffffff;
   border: 2px solid black;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 #orinoco-articles-selection-container .container-total-price-article {

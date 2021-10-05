@@ -77,6 +77,7 @@
         background-color: $tertiaryBackgroundColor;
         border: 2px solid black;
         white-space: nowrap;
+        cursor: pointer;
     }
     .container-total-price-article {
         @include displayRowCenter;
