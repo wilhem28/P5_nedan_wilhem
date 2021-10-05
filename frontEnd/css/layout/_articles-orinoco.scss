@@ -10,7 +10,8 @@ article {
     .title-container {
         @include displayRowCenter;
         width: 90%;
-        background-color: $primaryBackgroundColor;
+        // background-color: $primaryBackgroundColor;
+        background-color: $tertiaryBackgroundColor;
         h1 {
             color: rgba(73, 25, 25, 1);
             font : {

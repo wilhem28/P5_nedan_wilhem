@@ -8,7 +8,8 @@
         @include displayRowCenter;
         width: 90%;
         height: 20%;
-        background-color: $primaryBackgroundColor;
+        // background-color: $primaryBackgroundColor;
+        background-color: $tertiaryBackgroundColor;
         h1 {
             @include displayRowCenter;
             width: 100%;
